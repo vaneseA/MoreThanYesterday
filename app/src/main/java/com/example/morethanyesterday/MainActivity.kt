@@ -40,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         title=findViewById(R.id.title)
         contextEditText=findViewById(R.id.contextEditText)
 
-        title.text = "달력 일기장"
-
+        title.text = "More than yesterday"
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             diaryTextView.visibility = View.VISIBLE
             saveBtn.visibility = View.VISIBLE
