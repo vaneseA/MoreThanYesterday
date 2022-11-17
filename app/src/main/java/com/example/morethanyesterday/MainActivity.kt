@@ -9,59 +9,78 @@ import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.TextView
+import com.example.morethanyesterday.databinding.ActivityMainBinding
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
+
+
+    // (전역변수) 바인딩 객체 선언
+    private var vBinding: ActivityMainBinding? = null
+
+
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
+
+    private val binding get() = vBinding!!
+
     var userID: String = "userID"
     lateinit var fname: String
     lateinit var str: String
-    lateinit var calendarView: CalendarView
     lateinit var updateBtn: Button
-    lateinit var deleteBtn:Button
-    lateinit var saveBtn:Button
+    lateinit var deleteBtn: Button
+    lateinit var saveBtn: Button
     lateinit var diaryTextView: TextView
-    lateinit var diaryContent:TextView
-    lateinit var title:TextView
+    lateinit var diaryContent: TextView
+    lateinit var title: TextView
     lateinit var contextEditText: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        // 자동 생성된 뷰바인딩 클래스에서의 inflate 메서드 활용
+        // -> 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
+        vBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        // getRoot 메서드로 레이아웃 내부 최상위에 있는 뷰의 인스턴스 활용
+        // -> 생성된 뷰를 액티비티에 표시
+        setContentView(binding.root)
+
 
         // UI값 생성
-        calendarView=findViewById(R.id.calendarView)
-        diaryTextView=findViewById(R.id.diaryTextView)
-        saveBtn=findViewById(R.id.saveBtn)
-        deleteBtn=findViewById(R.id.deleteBtn)
-        updateBtn=findViewById(R.id.updateBtn)
-        diaryContent=findViewById(R.id.diaryContent)
-        title=findViewById(R.id.title)
-        contextEditText=findViewById(R.id.contextEditText)
 
-        title.text = "More than yesterday"
-        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            diaryTextView.visibility = View.VISIBLE
-            saveBtn.visibility = View.VISIBLE
-            contextEditText.visibility = View.VISIBLE
-            diaryContent.visibility = View.INVISIBLE
-            updateBtn.visibility = View.INVISIBLE
-            deleteBtn.visibility = View.INVISIBLE
-            diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
-            contextEditText.setText("")
+//        diaryTextView = findViewById(R.id.diaryTextView)
+//        saveBtn = findViewById(R.id.saveBtn)
+//        deleteBtn = findViewById(R.id.deleteBtn)
+//        updateBtn = findViewById(R.id.updateBtn)
+//        diaryContent = findViewById(R.id.diaryContent)
+//        title = findViewById(R.id.title)
+//        contextEditText = findViewById(R.id.contextEditText)
+
+        binding.title.text = "More than yesterday"
+        binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            binding.diaryTextView.visibility = View.VISIBLE
+            binding.saveBtn.visibility = View.VISIBLE
+            binding.contextEditText.visibility = View.VISIBLE
+            binding.diaryContent.visibility = View.INVISIBLE
+            binding.updateBtn.visibility = View.INVISIBLE
+            binding.deleteBtn.visibility = View.INVISIBLE
+            binding.diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
+            binding.contextEditText.setText("")
             checkDay(year, month, dayOfMonth, userID)
         }
 
-        saveBtn.setOnClickListener {
+        binding.saveBtn.setOnClickListener {
             saveDiary(fname)
-            contextEditText.visibility = View.INVISIBLE
-            saveBtn.visibility = View.INVISIBLE
-            updateBtn.visibility = View.VISIBLE
-            deleteBtn.visibility = View.VISIBLE
-            str = contextEditText.text.toString()
-            diaryContent.text = str
-            diaryContent.visibility = View.VISIBLE
+            binding.contextEditText.visibility = View.INVISIBLE
+            binding.saveBtn.visibility = View.INVISIBLE
+            binding.updateBtn.visibility = View.VISIBLE
+            binding.deleteBtn.visibility = View.VISIBLE
+            str = binding.contextEditText.text.toString()
+            binding.diaryContent.text = str
+            binding.diaryContent.visibility = View.VISIBLE
         }
     }
 
@@ -83,6 +102,8 @@ class MainActivity : AppCompatActivity() {
             saveBtn.visibility = View.INVISIBLE
             updateBtn.visibility = View.VISIBLE
             deleteBtn.visibility = View.VISIBLE
+
+
             updateBtn.setOnClickListener {
                 contextEditText.visibility = View.VISIBLE
                 diaryContent.visibility = View.INVISIBLE
