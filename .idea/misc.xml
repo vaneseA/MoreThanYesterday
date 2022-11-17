@@ -3,9 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_clear_24.xml" value="0.192" />
         <entry key="app/src/main/res/drawable-v24/underline.xml" value="0.224" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23981481481481481" />
+        <entry key="app/src/main/res/layout/activity_record_write.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_abs.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_aerobic.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_all.xml" value="0.21822916666666667" />
+        <entry key="app/src/main/res/layout/fragment_back.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_bicep.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_chest.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_lower_body.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_shoulder.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_trapezius.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_triceps.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.2171875" />
       </map>
     </option>

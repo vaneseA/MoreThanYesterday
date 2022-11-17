@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/mainColor"
+        android:background="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -93,7 +93,7 @@
 
 
     <Button
-        android:id="@+id/saveBtn"
+        android:id="@+id/goToWriteBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -102,35 +102,45 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="20dp"
-        android:text="저장"
+        android:text="운동 추가"
+
+        android:backgroundTint="@color/maincolor"
+        android:fontFamily="@font/jalnan"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
 
     <Button
-        android:id="@+id/updateBtn"
+        android:id="@+id/deleteBtn"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="수정"
+
+        android:backgroundTint="@color/maincolor"
+        android:fontFamily="@font/jalnan"
+        android:text="삭제"
+
         android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/saveBtn"
-        app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/goToWriteBtn"
+        app:layout_constraintEnd_toStartOf="@+id/updateBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/deleteBtn"
+        android:id="@+id/updateBtn"
         android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="삭제"
+        android:backgroundTint="@color/maincolor"
+        android:fontFamily="@font/jalnan"
+        android:text="운동 수정"
         android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/updateBtn"
-        app:layout_constraintEnd_toEndOf="@+id/saveBtn"></Button>
+        app:layout_constraintBaseline_toBaselineOf="@+id/deleteBtn"
+        app:layout_constraintEnd_toEndOf="@+id/goToWriteBtn"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

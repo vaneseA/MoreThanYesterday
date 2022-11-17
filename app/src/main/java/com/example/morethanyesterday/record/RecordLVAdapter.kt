@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.Record
+package com.example.morethanyesterday.record
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

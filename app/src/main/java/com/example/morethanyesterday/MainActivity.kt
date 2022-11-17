@@ -2,15 +2,15 @@ package com.example.morethanyesterday
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.CalendarView
-import android.widget.EditText
 import android.widget.TextView
-import com.example.morethanyesterday.Record.RecordLVAdapter
-import com.example.morethanyesterday.Record.RecordModel
+import com.example.morethanyesterday.record.RecordLVAdapter
+import com.example.morethanyesterday.record.RecordModel
+import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.example.morethanyesterday.databinding.ActivityMainBinding
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         binding.title.text = "More than yesterday"
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.diaryTextView.visibility = View.VISIBLE
-            binding.saveBtn.visibility = View.VISIBLE
+            binding.goToWriteBtn.visibility = View.VISIBLE
             binding.contextEditText.visibility = View.VISIBLE
             binding.diaryContent.visibility = View.INVISIBLE
             binding.updateBtn.visibility = View.INVISIBLE
@@ -75,15 +75,16 @@ class MainActivity : AppCompatActivity() {
             checkDay(year, month, dayOfMonth, userID)
         }
 
-        binding.saveBtn.setOnClickListener {
-            saveDiary(fname)
-            binding.contextEditText.visibility = View.INVISIBLE
-            binding.saveBtn.visibility = View.INVISIBLE
-            binding.updateBtn.visibility = View.VISIBLE
-            binding.deleteBtn.visibility = View.VISIBLE
-            str = binding.contextEditText.text.toString()
-            binding.diaryContent.text = str
-            binding.diaryContent.visibility = View.VISIBLE
+        binding.goToWriteBtn.setOnClickListener {
+            startActivity(Intent(this, RecordWriteAcitivity::class.java))
+//            saveDiary(fname)
+//            binding.contextEditText.visibility = View.INVISIBLE
+//            binding.goToWriteBtn.visibility = View.INVISIBLE
+//            binding.updateBtn.visibility = View.VISIBLE
+//            binding.deleteBtn.visibility = View.VISIBLE
+//            str = binding.contextEditText.text.toString()
+//            binding.diaryContent.text = str
+//            binding.diaryContent.visibility = View.VISIBLE
         }
     }
 
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             binding.contextEditText.visibility = View.INVISIBLE
             binding.diaryContent.visibility = View.VISIBLE
             binding.diaryContent.text = str
-            binding.saveBtn.visibility = View.INVISIBLE
+            binding.goToWriteBtn.visibility = View.INVISIBLE
             binding.updateBtn.visibility = View.VISIBLE
             binding.deleteBtn.visibility = View.VISIBLE
 
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 binding.contextEditText.visibility = View.VISIBLE
                 binding.diaryContent.visibility = View.INVISIBLE
                 binding.contextEditText.setText(str)
-                binding.saveBtn.visibility = View.VISIBLE
+                binding.goToWriteBtn.visibility = View.VISIBLE
                 binding.updateBtn.visibility = View.INVISIBLE
                 binding.deleteBtn.visibility = View.INVISIBLE
                 binding.diaryContent.text = binding.contextEditText.text
@@ -122,7 +123,7 @@ class MainActivity : AppCompatActivity() {
                 binding.deleteBtn.visibility = View.INVISIBLE
                 binding.contextEditText.setText("")
                 binding.contextEditText.visibility = View.VISIBLE
-                binding.saveBtn.visibility = View.VISIBLE
+                binding.goToWriteBtn.visibility = View.VISIBLE
                 removeDiary(fname)
             }
             if (diaryContent.text == null) {
