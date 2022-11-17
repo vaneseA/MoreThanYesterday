@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.TextView
+import com.example.morethanyesterday.Record.RecordLVAdapter
+import com.example.morethanyesterday.Record.RecordModel
 import com.example.morethanyesterday.databinding.ActivityMainBinding
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -24,6 +26,18 @@ class MainActivity : AppCompatActivity() {
 
     private val binding get() = vBinding!!
 
+    // 게시글 키
+    private lateinit var key: String
+
+    // 댓글(=본문+uid+시간) 목록
+    private val recordList = mutableListOf<RecordModel>()
+
+    // 댓글의 키 목록
+    private val recordKeyList = mutableListOf<String>()
+
+    // 리스트뷰 어댑터 선언
+    private lateinit var recordLVAdapter : RecordLVAdapter
+
     var userID: String = "userID"
     lateinit var fname: String
     lateinit var str: String
@@ -32,8 +46,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var saveBtn: Button
     lateinit var diaryTextView: TextView
     lateinit var diaryContent: TextView
-    lateinit var title: TextView
-    lateinit var contextEditText: EditText
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,16 +61,6 @@ class MainActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-
-        // UI값 생성
-
-//        diaryTextView = findViewById(R.id.diaryTextView)
-//        saveBtn = findViewById(R.id.saveBtn)
-//        deleteBtn = findViewById(R.id.deleteBtn)
-//        updateBtn = findViewById(R.id.updateBtn)
-//        diaryContent = findViewById(R.id.diaryContent)
-//        title = findViewById(R.id.title)
-//        contextEditText = findViewById(R.id.contextEditText)
 
         binding.title.text = "More than yesterday"
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
@@ -96,30 +99,30 @@ class MainActivity : AppCompatActivity() {
             fileInputStream.read(fileData)
             fileInputStream.close()
             str = String(fileData)
-            contextEditText.visibility = View.INVISIBLE
-            diaryContent.visibility = View.VISIBLE
-            diaryContent.text = str
-            saveBtn.visibility = View.INVISIBLE
-            updateBtn.visibility = View.VISIBLE
-            deleteBtn.visibility = View.VISIBLE
+            binding.contextEditText.visibility = View.INVISIBLE
+            binding.diaryContent.visibility = View.VISIBLE
+            binding.diaryContent.text = str
+            binding.saveBtn.visibility = View.INVISIBLE
+            binding.updateBtn.visibility = View.VISIBLE
+            binding.deleteBtn.visibility = View.VISIBLE
 
 
-            updateBtn.setOnClickListener {
-                contextEditText.visibility = View.VISIBLE
-                diaryContent.visibility = View.INVISIBLE
-                contextEditText.setText(str)
-                saveBtn.visibility = View.VISIBLE
-                updateBtn.visibility = View.INVISIBLE
-                deleteBtn.visibility = View.INVISIBLE
-                diaryContent.text = contextEditText.text
+            binding.updateBtn.setOnClickListener {
+                binding.contextEditText.visibility = View.VISIBLE
+                binding.diaryContent.visibility = View.INVISIBLE
+                binding.contextEditText.setText(str)
+                binding.saveBtn.visibility = View.VISIBLE
+                binding.updateBtn.visibility = View.INVISIBLE
+                binding.deleteBtn.visibility = View.INVISIBLE
+                binding.diaryContent.text = binding.contextEditText.text
             }
-            deleteBtn.setOnClickListener {
-                diaryContent.visibility = View.INVISIBLE
-                updateBtn.visibility = View.INVISIBLE
-                deleteBtn.visibility = View.INVISIBLE
-                contextEditText.setText("")
-                contextEditText.visibility = View.VISIBLE
-                saveBtn.visibility = View.VISIBLE
+            binding.deleteBtn.setOnClickListener {
+                binding.diaryContent.visibility = View.INVISIBLE
+                binding.updateBtn.visibility = View.INVISIBLE
+                binding.deleteBtn.visibility = View.INVISIBLE
+                binding.contextEditText.setText("")
+                binding.contextEditText.visibility = View.VISIBLE
+                binding.saveBtn.visibility = View.VISIBLE
                 removeDiary(fname)
             }
             if (diaryContent.text == null) {
@@ -128,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 deleteBtn.visibility = View.INVISIBLE
                 diaryTextView.visibility = View.VISIBLE
                 saveBtn.visibility = View.VISIBLE
-                contextEditText.visibility = View.VISIBLE
+                binding.contextEditText.visibility = View.VISIBLE
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -157,7 +160,7 @@ class MainActivity : AppCompatActivity() {
         var fileOutputStream: FileOutputStream
         try {
             fileOutputStream = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
-            val content = contextEditText.text.toString()
+            val content = binding.contextEditText.text.toString()
             fileOutputStream.write(content.toByteArray())
             fileOutputStream.close()
         } catch (e: java.lang.Exception) {

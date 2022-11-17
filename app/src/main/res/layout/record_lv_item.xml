@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/commentLVItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/underline"
+    android:orientation="vertical">
+
+    <!-- 리스트뷰 아이템 하나 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 운동명,총 세트,총 kg,최고 kg,총 횟수 영역 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 운동명 -->
+            <TextView
+                android:id="@+id/exerciseNameArea"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:text="운동명"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- 총 세트 -->
+                <TextView
+                    android:id="@+id/exerciseSetArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="총 6set,"
+                    android:textSize="14sp" />
+
+                <!-- 총 kg -->
+                <TextView
+                    android:id="@+id/exerciseKgArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="총 1600kg,"
+                    android:textSize="14sp" />
+
+                <!-- 최고 kg -->
+                <TextView
+                    android:id="@+id/exerciseBestKgArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="40.8kg,"
+                    android:textSize="14sp" />
+
+                <!-- 총 횟수 -->
+                <TextView
+                    android:id="@+id/exerciseCountArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="48회"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 댓글 및 배지 영역 -->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
