@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "869768333384",
+    "project_id": "morethanyesterday-d7f3e",
+    "storage_bucket": "morethanyesterday-d7f3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869768333384:android:3095383b3e27a978b1b07d",
+        "android_client_info": {
+          "package_name": "com.example.morethanyesterday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869768333384-s2v55vs83gnaeaq2hcr5rv4u7hnfhfri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDldWhDeMgtSXtVcDv61BtZQZO9cwFoSn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869768333384-s2v55vs83gnaeaq2hcr5rv4u7hnfhfri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
