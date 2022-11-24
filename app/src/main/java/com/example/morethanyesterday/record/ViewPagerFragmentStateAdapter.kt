@@ -14,7 +14,7 @@ class ViewPagerFragmentStateAdapter(fragmentActivity: FragmentActivity) :
         BackFragment(),
         ChestFragment(),
         AbsFragment(),
-        AerobicFragment(),
+        CardioFragment(),
         BicepFragment(),
         LowerBodyFragment(),
         ShoulderFragment(),

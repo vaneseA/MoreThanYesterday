@@ -27,7 +27,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
             6 -> return ShoulderFragment()
             7 -> return LowerBodyFragment()
             8 -> return AbsFragment()
-            9 -> return AerobicFragment()
+            9 -> return CardioFragment()
 
         }
         return AllFragment()

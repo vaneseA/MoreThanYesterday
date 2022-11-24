@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddExerciseActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+    <EditText
+        android:id="@+id/addExerciseType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="운동부위"/>
+    <EditText
+        android:id="@+id/addExerciseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="운동이름"/>
+    <Button
+        android:id="@+id/exerciseSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save">
+
+    </Button>
+
+</LinearLayout>
