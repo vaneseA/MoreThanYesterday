@@ -74,7 +74,7 @@ class AbsFragment : Fragment() {
     }
 
     private fun getExerciseDataForMain() {
-        FirebaseDatabase.getInstance().getReference("/exercise").child("/chest")
+        FirebaseDatabase.getInstance().getReference("/exercise").child("/abs")
             .addChildEventListener(object : ChildEventListener {
                 // 글이 추가된 경우
                 override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {

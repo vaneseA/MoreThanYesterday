@@ -12,6 +12,7 @@ import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.FragmentChestBinding
+import com.example.morethanyesterday.databinding.FragmentTrapeziusBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -20,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class TrapeziusFragment : Fragment() {
     // (전역변수) 바인딩 객체 선언
-    private var vBinding: FragmentChestBinding? = null
+    private var vBinding: FragmentTrapeziusBinding? = null
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
@@ -39,7 +40,7 @@ class TrapeziusFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // 뷰바인딩
-        vBinding = FragmentChestBinding.inflate(inflater, container, false)
+        vBinding = FragmentTrapeziusBinding.inflate(inflater, container, false)
 
         rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
 
@@ -48,7 +49,7 @@ class TrapeziusFragment : Fragment() {
         val intent = Intent(context, RecordWriteAcitivity::class.java)
 
 //        exerciseAllRVAdapter = ExerciseAllRVAdapter(exerciseList)
-        val rv: RecyclerView = binding.chestRecyclerView
+        val rv: RecyclerView = binding.trapeziusRecyclerView
         rv.adapter = rvAdapter
 
         // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
@@ -73,7 +74,7 @@ class TrapeziusFragment : Fragment() {
     }
 
     private fun getExerciseDataForMain() {
-        FirebaseDatabase.getInstance().getReference("/exercise").child("/chest")
+        FirebaseDatabase.getInstance().getReference("/exercise").child("/trapezius")
             .addChildEventListener(object : ChildEventListener {
                 // 글이 추가된 경우
                 override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
