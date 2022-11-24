@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             var selectedDate = String.format("%d년 %d월 %d일", year, month + 1, dayOfMonth)
             binding.diaryTextView.visibility = View.VISIBLE
             binding.goToWriteBtn.visibility = View.VISIBLE
-            binding.contextEditText.visibility = View.VISIBLE
+//            binding.contextEditText.visibility = View.VISIBLE
             binding.diaryContent.visibility = View.INVISIBLE
             binding.updateBtn.visibility = View.INVISIBLE
             binding.deleteBtn.visibility = View.INVISIBLE
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             fileInputStream.read(fileData)
             fileInputStream.close()
             str = String(fileData)
-            binding.contextEditText.visibility = View.INVISIBLE
+//            binding.contextEditText.visibility = View.INVISIBLE
             binding.diaryContent.visibility = View.VISIBLE
             binding.diaryContent.text = str
             binding.goToWriteBtn.visibility = View.INVISIBLE
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
 
             binding.updateBtn.setOnClickListener {
-                binding.contextEditText.visibility = View.VISIBLE
+//                binding.contextEditText.visibility = View.VISIBLE
                 binding.diaryContent.visibility = View.INVISIBLE
 //                binding.contextEditText.setText(str)
                 binding.goToWriteBtn.visibility = View.VISIBLE
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                 binding.updateBtn.visibility = View.INVISIBLE
                 binding.deleteBtn.visibility = View.INVISIBLE
 //                binding.contextEditText.setText("")
-                binding.contextEditText.visibility = View.VISIBLE
+//                binding.contextEditText.visibility = View.VISIBLE
                 binding.goToWriteBtn.visibility = View.VISIBLE
 //                removeDiary(fname)
             }
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
                 deleteBtn.visibility = View.INVISIBLE
                 diaryTextView.visibility = View.VISIBLE
                 saveBtn.visibility = View.VISIBLE
-                binding.contextEditText.visibility = View.VISIBLE
+//                binding.contextEditText.visibility = View.VISIBLE
             }
         } catch (e: Exception) {
             e.printStackTrace()

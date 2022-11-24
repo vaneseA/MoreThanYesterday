@@ -31,14 +31,18 @@ class RecordLVAdapter(val recordList: MutableList<RecordModel>) : BaseAdapter() 
         view = LayoutInflater.from(parent?.context).inflate(R.layout.record_lv_item, parent, false)
 
         // 운동이름,총 세트, 총 중량, 최고 중량, 총 횟수 영역에
-        val exerciseName = view?.findViewById<TextView>(R.id.exerciseNameArea)
-        val exerciseSet = view?.findViewById<TextView>(R.id.exerciseSetArea)
-        val exerciseKg = view?.findViewById<TextView>(R.id.exerciseKgArea)
-        val exerciseBestKg = view?.findViewById<TextView>(R.id.exerciseBestKgArea)
-        val exerciseCount = view?.findViewById<TextView>(R.id.exerciseCountArea)
+
+        val exerciseType = view.findViewById<TextView>(R.id.TypeArea)
+        val exerciseName = view.findViewById<TextView>(R.id.NameArea)
+        val exerciseSet = view.findViewById<TextView>(R.id.exerciseSetArea)
+        val exerciseKg = view.findViewById<TextView>(R.id.exerciseKgArea)
+        val exerciseBestKg = view.findViewById<TextView>(R.id.exerciseBestKgArea)
+        val exerciseCount = view.findViewById<TextView>(R.id.exerciseCountArea)
+
 
 
         // 운동이름,총 세트, 총 중량, 최고 중량, 총 횟수 넣음
+        exerciseType!!.text = recordList[position].type
         exerciseName!!.text = recordList[position].name
         exerciseSet!!.text = recordList[position].set
         exerciseKg!!.text = recordList[position].kg

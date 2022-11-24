@@ -3,10 +3,10 @@ package com.example.morethanyesterday.record
 data class RecordModel(
 
     //  운동이름
-    var Name: String = "",
+    var name: String = "",
 
     // 운동타입
-    var Type: String = "",
+    var type: String = "",
 
     // 총 세트 수
     var set : String = "",

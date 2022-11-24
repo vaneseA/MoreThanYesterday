@@ -3,12 +3,16 @@ package com.example.morethanyesterday.record.fragments
 
 
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
+import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
@@ -54,11 +58,7 @@ class ExerciseAllRVAdapter(
         exerciseName.text = exercise.exerciseName
 
         holder.itemView.setOnClickListener {
-//            holder.itemView.context.startActivity(intent)
-        }
-        holder.itemView.setOnLongClickListener {
-
-            return@setOnLongClickListener (true)
+            showDialog(exercise.exerciseName, exercise.exerciseType, holder.itemView.context)
         }
     }
 
@@ -68,4 +68,36 @@ class ExerciseAllRVAdapter(
 
     // 각 아이템에 데이터 넣어줌
     inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
+
+    private fun showDialog(exerciseName: String, exerciseType:String, context: Context) {
+
+
+        // custom_dialog를 뷰 객체로 반환
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.custom_dialog, null)
+
+        // 대화상자 생성
+        val builder = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setTitle("${exerciseName}(${exerciseType})\n이 운동을 추가하시겠습니까?")
+
+//         대화상자 띄움
+        val alertDialog = builder.show()
+
+        val yesBtn = alertDialog.findViewById<ConstraintLayout>(R.id.yesBtn)
+        val noBtn = alertDialog.findViewById<ConstraintLayout>(R.id.noBtn)
+
+
+        yesBtn.setOnClickListener {
+            Log.d("dddyes", "clicked")
+//            deletePost(postId, context)
+            alertDialog.dismiss()
+
+        }
+        noBtn.setOnClickListener {
+            Log.d("dddno", "clicked")
+            alertDialog.dismiss()
+            Toast.makeText(context, "취소되었습니다", Toast.LENGTH_SHORT).show()
+        }
+
+    }
 }

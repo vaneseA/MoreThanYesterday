@@ -3,14 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.13956433637284701" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_clear_24.xml" value="0.192" />
         <entry key="app/src/main/res/drawable-v24/underline.xml" value="0.224" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.228" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.228" />
         <entry key="app/src/main/res/layout/activity_add_exercise.xml" value="0.25729166666666664" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23981481481481481" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_record_write.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.21897435897435896" />
         <entry key="app/src/main/res/layout/exercise_rv_item.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_abs.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_aerobic.xml" value="0.2171875" />
@@ -23,7 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_shoulder.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_trapezius.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_triceps.xml" value="0.2171875" />
-        <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.1" />
       </map>
     </option>
   </component>
