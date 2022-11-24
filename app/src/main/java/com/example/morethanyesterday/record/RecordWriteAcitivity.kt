@@ -8,7 +8,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class RecordWriteAcitivity : AppCompatActivity() {
 
 
-    private  val tabTitleArray = arrayOf(
+    private val tabTitleArray = arrayOf(
         "전체",
         "등",
         "가슴",
@@ -28,7 +28,8 @@ class RecordWriteAcitivity : AppCompatActivity() {
     private val binding get() = vBinding!!
 
 
-    lateinit var mAdapter : ViewPagerFragmentStateAdapter
+    lateinit var mAdapter: ViewPagerFragmentStateAdapter
+
     // 게시글 키
     private lateinit var key: String
 
@@ -46,11 +47,17 @@ class RecordWriteAcitivity : AppCompatActivity() {
 
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
 
-        TabLayoutMediator(tabLayout,viewPager){tab,position ->
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitleArray[position]
         }.attach()
 
 
+//        MainActivity에서 RecordWriteAcitivity로 데이터값 받음
+        binding.selectedDate.text = intent.getStringExtra("Date")
+
+        binding.backToTheMainBtn.setOnClickListener {
+            finish()
+        }
 
 
     }

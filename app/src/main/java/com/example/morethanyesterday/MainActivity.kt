@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import com.example.morethanyesterday.record.RecordLVAdapter
 import com.example.morethanyesterday.record.RecordModel
 import com.example.morethanyesterday.record.RecordWriteAcitivity
@@ -17,6 +18,8 @@ import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
 
+
+    private var selectedDate = ""
 
     // (전역변수) 바인딩 객체 선언
     private var vBinding: ActivityMainBinding? = null
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private val recordKeyList = mutableListOf<String>()
 
     // 리스트뷰 어댑터 선언
-    private lateinit var recordLVAdapter : RecordLVAdapter
+    private lateinit var recordLVAdapter: RecordLVAdapter
 
     var userID: String = "userID"
     lateinit var fname: String
@@ -46,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var saveBtn: Button
     lateinit var diaryTextView: TextView
     lateinit var diaryContent: TextView
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,22 +63,27 @@ class MainActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
+        val intent = Intent(this, RecordWriteAcitivity::class.java)
 
         binding.title.text = "More than yesterday"
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            var selectedDate = String.format("%d년 %d월 %d일", year, month + 1, dayOfMonth)
             binding.diaryTextView.visibility = View.VISIBLE
             binding.goToWriteBtn.visibility = View.VISIBLE
             binding.contextEditText.visibility = View.VISIBLE
             binding.diaryContent.visibility = View.INVISIBLE
             binding.updateBtn.visibility = View.INVISIBLE
             binding.deleteBtn.visibility = View.INVISIBLE
-            binding.diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
+            binding.diaryTextView.text = selectedDate
             binding.contextEditText.setText("")
             checkDay(year, month, dayOfMonth, userID)
+            // RecordWriteAcitivity : 넘기고자 하는 Component
+            intent.putExtra("Date", selectedDate)
+
         }
 
         binding.goToWriteBtn.setOnClickListener {
-            startActivity(Intent(this, RecordWriteAcitivity::class.java))
+            startActivity(intent)
 //            saveDiary(fname)
 //            binding.contextEditText.visibility = View.INVISIBLE
 //            binding.goToWriteBtn.visibility = View.INVISIBLE
@@ -124,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 binding.contextEditText.setText("")
                 binding.contextEditText.visibility = View.VISIBLE
                 binding.goToWriteBtn.visibility = View.VISIBLE
-                removeDiary(fname)
+//                removeDiary(fname)
             }
             if (diaryContent.text == null) {
                 diaryContent.visibility = View.INVISIBLE
@@ -140,32 +147,32 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // 달력 내용 제거
-    @SuppressLint("WrongConstant")
-    fun removeDiary(readDay: String?) {
-        var fileOutputStream: FileOutputStream
-        try {
-            fileOutputStream = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
-            val content = ""
-            fileOutputStream.write(content.toByteArray())
-            fileOutputStream.close()
-        } catch (e: java.lang.Exception) {
-            e.printStackTrace()
-        }
-    }
+//    // 달력 내용 제거
+//    @SuppressLint("WrongConstant")
+//    fun removeDiary(readDay: String?) {
+//        var fileOutputStream: FileOutputStream
+//        try {
+//            fileOutputStream = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
+//            val content = ""
+//            fileOutputStream.write(content.toByteArray())
+//            fileOutputStream.close()
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//        }
+//    }
 
 
-    // 달력 내용 추가
-    @SuppressLint("WrongConstant")
-    fun saveDiary(readDay: String?) {
-        var fileOutputStream: FileOutputStream
-        try {
-            fileOutputStream = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
-            val content = binding.contextEditText.text.toString()
-            fileOutputStream.write(content.toByteArray())
-            fileOutputStream.close()
-        } catch (e: java.lang.Exception) {
-            e.printStackTrace()
-        }
-    }
+//    // 달력 내용 추가
+//    @SuppressLint("WrongConstant")
+//    fun saveDiary(readDay: String?) {
+//        var fileOutputStream: FileOutputStream
+//        try {
+//            fileOutputStream = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
+//            val content = binding.contextEditText.text.toString()
+//            fileOutputStream.write(content.toByteArray())
+//            fileOutputStream.close()
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//        }
+//    }
 }
