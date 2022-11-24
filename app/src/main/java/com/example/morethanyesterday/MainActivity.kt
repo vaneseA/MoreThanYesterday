@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             binding.updateBtn.visibility = View.INVISIBLE
             binding.deleteBtn.visibility = View.INVISIBLE
             binding.diaryTextView.text = selectedDate
-            binding.contextEditText.setText("")
+//            binding.contextEditText.setText("")
             checkDay(year, month, dayOfMonth, userID)
             // RecordWriteAcitivity : 넘기고자 하는 Component
             intent.putExtra("Date", selectedDate)
@@ -118,17 +118,17 @@ class MainActivity : AppCompatActivity() {
             binding.updateBtn.setOnClickListener {
                 binding.contextEditText.visibility = View.VISIBLE
                 binding.diaryContent.visibility = View.INVISIBLE
-                binding.contextEditText.setText(str)
+//                binding.contextEditText.setText(str)
                 binding.goToWriteBtn.visibility = View.VISIBLE
                 binding.updateBtn.visibility = View.INVISIBLE
                 binding.deleteBtn.visibility = View.INVISIBLE
-                binding.diaryContent.text = binding.contextEditText.text
+//                binding.diaryContent.text = binding.contextEditText.text
             }
             binding.deleteBtn.setOnClickListener {
                 binding.diaryContent.visibility = View.INVISIBLE
                 binding.updateBtn.visibility = View.INVISIBLE
                 binding.deleteBtn.visibility = View.INVISIBLE
-                binding.contextEditText.setText("")
+//                binding.contextEditText.setText("")
                 binding.contextEditText.visibility = View.VISIBLE
                 binding.goToWriteBtn.visibility = View.VISIBLE
 //                removeDiary(fname)

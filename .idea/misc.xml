@@ -23,7 +23,7 @@
         <entry key="app/src/main/res/layout/fragment_shoulder.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_trapezius.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_triceps.xml" value="0.2171875" />
-        <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.33" />
       </map>
     </option>
   </component>
