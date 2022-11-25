@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ListView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import com.example.morethanyesterday.record.RecordLVAdapter
@@ -81,7 +82,26 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("Date", selectedDate)
 
         }
+        // 리스트뷰 어댑터 연결(운동목록)
+        recordLVAdapter = RecordLVAdapter(recordList)
 
+        // 리스트뷰 어댑터 연결
+        val lv : ListView = binding.mainLV
+        lv.adapter = recordLVAdapter
+
+        // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
+        lv.setOnItemClickListener { parent, view, position, id ->
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(context, BoardReadActivity::class.java)
+
+            // 글읽기 액티비티로 게시글의 키 값 전달
+            intent.putExtra("key", recordList[position])
+
+            // 글읽기 액티비티 시작
+            startActivity(intent)
+
+        }
         binding.goToWriteBtn.setOnClickListener {
             startActivity(intent)
 //            saveDiary(fname)

@@ -1,8 +1,6 @@
 package com.example.morethanyesterday.record.fragments
 
 
-
-
 import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
@@ -17,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.R
-
+import com.example.morethanyesterday.utils.FBRef
 
 
 private lateinit var exerciseId: String
@@ -69,7 +67,7 @@ class ExerciseAllRVAdapter(
     // 각 아이템에 데이터 넣어줌
     inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
-    private fun showDialog(exerciseName: String, exerciseType:String, context: Context) {
+    private fun showDialog(exerciseName: String, exerciseType: String, context: Context) {
 
 
         // custom_dialog를 뷰 객체로 반환
@@ -89,7 +87,7 @@ class ExerciseAllRVAdapter(
 
         yesBtn.setOnClickListener {
             Log.d("dddyes", "clicked")
-//            deletePost(postId, context)
+            addExercise(exerciseType,exerciseName,exerciseId,)
             alertDialog.dismiss()
 
         }
@@ -98,6 +96,15 @@ class ExerciseAllRVAdapter(
             alertDialog.dismiss()
             Toast.makeText(context, "취소되었습니다", Toast.LENGTH_SHORT).show()
         }
+
+    }
+
+    private fun addExercise(exerciseType: String, exerciseName: String, exerciseId: String) {
+        // 키 값 하위에 데이터 넣음
+        FBRef.userRef
+            .child("temporary")
+            .child(exerciseName)
+            .setValue(AddExerciseModel(exerciseType,exerciseName,exerciseId))
 
     }
 }

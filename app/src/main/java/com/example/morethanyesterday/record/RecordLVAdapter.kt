@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.R
 
 class RecordLVAdapter(val recordList: MutableList<RecordModel>) : BaseAdapter() {
@@ -44,10 +45,10 @@ class RecordLVAdapter(val recordList: MutableList<RecordModel>) : BaseAdapter() 
         // 운동이름,총 세트, 총 중량, 최고 중량, 총 횟수 넣음
         exerciseType!!.text = recordList[position].type
         exerciseName!!.text = recordList[position].name
-        exerciseSet!!.text = recordList[position].set
-        exerciseKg!!.text = recordList[position].kg
-        exerciseBestKg!!.text = recordList[position].bestKg
-        exerciseCount!!.text = recordList[position].count
+//        exerciseSet!!.text = recordList[position].set
+//        exerciseKg!!.text = recordList[position].kg
+//        exerciseBestKg!!.text = recordList[position].bestKg
+//        exerciseCount!!.text = recordList[position].count
 
         // 뷰 반환
         return view!!
