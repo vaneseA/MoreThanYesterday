@@ -18,7 +18,8 @@ class RecordWriteAcitivity : AppCompatActivity() {
         "어깨",
         "하체",
         "복근",
-        "유산소"
+        "유산소",
+        "저장기록"
     )
 
     // (전역변수) 바인딩 객체 선언

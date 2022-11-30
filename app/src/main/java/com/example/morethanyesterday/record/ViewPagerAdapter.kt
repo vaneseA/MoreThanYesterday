@@ -7,7 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.morethanyesterday.record.fragments.*
 
-private const val NUM_TABS = 10
+private const val NUM_TABS = 11
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -28,6 +28,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
             7 -> return LowerBodyFragment()
             8 -> return AbsFragment()
             9 -> return CardioFragment()
+            10 -> return RecordListFragment()
 
         }
         return AllFragment()

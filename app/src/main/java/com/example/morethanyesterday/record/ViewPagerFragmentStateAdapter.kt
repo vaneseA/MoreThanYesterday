@@ -20,6 +20,7 @@ class ViewPagerFragmentStateAdapter(fragmentActivity: FragmentActivity) :
         ShoulderFragment(),
         TrapeziusFragment(),
         TricepsFragment(),
+        RecordListFragment()
 
     )
 

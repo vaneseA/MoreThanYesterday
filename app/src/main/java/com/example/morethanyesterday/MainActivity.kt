@@ -74,9 +74,9 @@ class MainActivity : AppCompatActivity() {
             binding.diaryTextView.visibility = View.VISIBLE
             binding.goToWriteBtn.visibility = View.VISIBLE
 //            binding.contextEditText.visibility = View.VISIBLE
-            binding.diaryContent.visibility = View.INVISIBLE
-            binding.updateBtn.visibility = View.INVISIBLE
-            binding.deleteBtn.visibility = View.INVISIBLE
+//            binding.diaryContent.visibility = View.INVISIBLE
+//            binding.updateBtn.visibility = View.INVISIBLE
+//            binding.deleteBtn.visibility = View.INVISIBLE
             binding.diaryTextView.text = selectedDate
 //            binding.contextEditText.setText("")
             checkDay(year, month, dayOfMonth, userID)
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         // 리스트뷰 어댑터 연결(운동목록)
         recordLVAdapter = RecordLVAdapter(AddExerciseList)
         // 리스트뷰 어댑터 연결
-        val lv : ListView = binding.mainLV
+        val lv: ListView = binding.mainLV
         lv.adapter = recordLVAdapter
 
         //추가된 운동 출력
@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity() {
 
             // 운동세트액티비티 시작
             startActivity(intent)
+
 
         }
         binding.goToWriteBtn.setOnClickListener {
@@ -132,31 +133,31 @@ class MainActivity : AppCompatActivity() {
             fileInputStream.close()
             str = String(fileData)
 //            binding.contextEditText.visibility = View.INVISIBLE
-            binding.diaryContent.visibility = View.VISIBLE
-            binding.diaryContent.text = str
+//            binding.diaryContent.visibility = View.VISIBLE
+//            binding.diaryContent.text = str
             binding.goToWriteBtn.visibility = View.INVISIBLE
-            binding.updateBtn.visibility = View.VISIBLE
-            binding.deleteBtn.visibility = View.VISIBLE
+//            binding.updateBtn.visibility = View.VISIBLE
+//            binding.deleteBtn.visibility = View.VISIBLE
 
 
-            binding.updateBtn.setOnClickListener {
-//                binding.contextEditText.visibility = View.VISIBLE
-                binding.diaryContent.visibility = View.INVISIBLE
-//                binding.contextEditText.setText(str)
-                binding.goToWriteBtn.visibility = View.VISIBLE
-                binding.updateBtn.visibility = View.INVISIBLE
-                binding.deleteBtn.visibility = View.INVISIBLE
-//                binding.diaryContent.text = binding.contextEditText.text
-            }
-            binding.deleteBtn.setOnClickListener {
-                binding.diaryContent.visibility = View.INVISIBLE
-                binding.updateBtn.visibility = View.INVISIBLE
-                binding.deleteBtn.visibility = View.INVISIBLE
-//                binding.contextEditText.setText("")
-//                binding.contextEditText.visibility = View.VISIBLE
-                binding.goToWriteBtn.visibility = View.VISIBLE
-//                removeDiary(fname)
-            }
+//            binding.updateBtn.setOnClickListener {
+////                binding.contextEditText.visibility = View.VISIBLE
+//                binding.diaryContent.visibility = View.INVISIBLE
+////                binding.contextEditText.setText(str)
+//                binding.goToWriteBtn.visibility = View.VISIBLE
+//                binding.updateBtn.visibility = View.INVISIBLE
+//                binding.deleteBtn.visibility = View.INVISIBLE
+////                binding.diaryContent.text = binding.contextEditText.text
+//            }
+//            binding.deleteBtn.setOnClickListener {
+//                binding.diaryContent.visibility = View.INVISIBLE
+//                binding.updateBtn.visibility = View.INVISIBLE
+//                binding.deleteBtn.visibility = View.INVISIBLE
+////                binding.contextEditText.setText("")
+////                binding.contextEditText.visibility = View.VISIBLE
+//                binding.goToWriteBtn.visibility = View.VISIBLE
+////                removeDiary(fname)
+//            }
             if (diaryContent.text == null) {
                 diaryContent.visibility = View.INVISIBLE
                 updateBtn.visibility = View.INVISIBLE
@@ -186,7 +187,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 
 
-//    // 달력 내용 추가
+    //    // 달력 내용 추가
 //    @SuppressLint("WrongConstant")
 //    fun saveDiary(readDay: String?) {
 //        var fileOutputStream: FileOutputStream
@@ -201,57 +202,57 @@ class MainActivity : AppCompatActivity() {
 //    }
 // 게시글 하나의 정보를 가져옴
 // 모든 게시글 정보를 가져옴
-private fun getExerciseListData() {
+    private fun getExerciseListData() {
 
-    // 데이터베이스에서 컨텐츠의 세부정보를 검색
-    val postListener = object : ValueEventListener {
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
 
-        // 데이터 스냅샷
-        @SuppressLint("NotifyDataSetChanged")
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-            // 게시글 목록 비움
-            // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
-            AddExerciseList.clear()
+                // 게시글 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
+                AddExerciseList.clear()
 
-            // 데이터 스냅샷 내 데이터모델 형식으로 저장된
-            for(dataModel in dataSnapshot.children) {
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for (dataModel in dataSnapshot.children) {
 
-                // 아이템(=게시글)
-                val item = dataModel.getValue(AddExerciseModel::class.java)
+                    // 아이템(=게시글)
+                    val item = dataModel.getValue(AddExerciseModel::class.java)
 
-                // 게시글 목록에 아이템 넣음
-                AddExerciseList.add(item!!)
+                    // 게시글 목록에 아이템 넣음
+                    AddExerciseList.add(item!!)
 
-                // 게시글 키 목록에 문자열 형식으로 변환한 키 넣음
-                AddExerciseKeyList.add(dataModel.key.toString())
-Log.d("keykey", dataModel.key.toString())
-            }
-            // getPostData()와 달리 반복문임 -> 아이템'들'
+                    // 게시글 키 목록에 문자열 형식으로 변환한 키 넣음
+                    AddExerciseKeyList.add(dataModel.key.toString())
+                    Log.d("keykey", dataModel.key.toString())
+                }
+                // getPostData()와 달리 반복문임 -> 아이템'들'
 
-            // 게시글 키 목록을 역순으로 출력
-            AddExerciseKeyList.reverse()
+                // 게시글 키 목록을 역순으로 출력
+                AddExerciseKeyList.reverse()
 
-            // 게시글 목록도 역순 출력
-            AddExerciseList.reverse()
+                // 게시글 목록도 역순 출력
+                AddExerciseList.reverse()
 
 //            // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
-//            RecordLVAdapter.notifyDataSetChanged()
+                recordLVAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
+
+            }
 
         }
 
-        // 오류 나면
-        override fun onCancelled(databaseError: DatabaseError) {
-
-            // 로그
-            Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
-
-        }
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.userRef.child("temporary").addValueEventListener(postListener)
 
     }
-
-    // 파이어베이스 내 데이터의 변화(추가)를 알려줌
-    FBRef.userRef.child("temporary").addValueEventListener(postListener)
-
-}
 }
