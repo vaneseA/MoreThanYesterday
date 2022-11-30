@@ -8,16 +8,19 @@ data class RecordModel(
     // 운동타입
     var type: String = "",
 
+    //운동Id
+    var id: String = "",
+
     // 총 세트 수
-    var set : String = "",
+    var set: String = "",
 
     // 총 중량
-    var kg : String = "",
+    var kg: String = "",
 
     // 최고 중량
-    var bestKg : String = "",
+    var bestKg: String = "",
 
     // 총 횟수
-    var count : String = ""
+    var count: String = ""
 
 )

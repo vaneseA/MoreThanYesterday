@@ -1,113 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/commentLVItemLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:background="@drawable/underline"
-    android:orientation="vertical">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
 
-    <!-- 리스트뷰 아이템 하나 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!-- 리스트뷰 아이템 하나 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!-- 운동명,총 세트,총 kg,최고 kg,총 횟수 영역 -->
-        <LinearLayout
+            <!-- 운동명,총 세트,총 kg,최고 kg,총 횟수 영역 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <!-- 운동명 -->
+                    <TextView
+                        android:id="@+id/NameArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="운동명"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!-- 운동부위 -->
+                    <TextView
+                        android:id="@+id/TypeArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="운동부위"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!-- 총 세트 -->
+                    <TextView
+                        android:id="@+id/exerciseSetArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="총 6set,"
+                        android:textSize="14sp" />
+
+                    <!-- 총 kg -->
+                    <TextView
+                        android:id="@+id/exerciseKgArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="총 1600kg,"
+                        android:textSize="14sp" />
+
+                    <!-- 최고 kg -->
+                    <TextView
+                        android:id="@+id/exerciseBestKgArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="40.8kg,"
+                        android:textSize="14sp" />
+
+                    <!-- 총 횟수 -->
+                    <TextView
+                        android:id="@+id/exerciseCountArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="48회"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/nested_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="4dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <!-- 운동명 -->
-                <TextView
-                    android:id="@+id/NameArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingHorizontal="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:text="운동명"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!-- 운동부위 -->
-                <TextView
-                    android:id="@+id/TypeArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingHorizontal="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:text="운동부위"
-                    android:textColor="@color/gray"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <!-- 총 세트 -->
-                <TextView
-                    android:id="@+id/exerciseSetArea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="총 6set,"
-                    android:textSize="14sp" />
-
-                <!-- 총 kg -->
-                <TextView
-                    android:id="@+id/exerciseKgArea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="총 1600kg,"
-                    android:textSize="14sp" />
-
-                <!-- 최고 kg -->
-                <TextView
-                    android:id="@+id/exerciseBestKgArea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="40.8kg,"
-                    android:textSize="14sp" />
-
-                <!-- 총 횟수 -->
-                <TextView
-                    android:id="@+id/exerciseCountArea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="48회"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
 

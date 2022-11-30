@@ -86,13 +86,11 @@ class ExerciseAllRVAdapter(
 
 
         yesBtn.setOnClickListener {
-            Log.d("dddyes", "clicked")
             addExercise(exerciseType,exerciseName,exerciseId,)
             alertDialog.dismiss()
 
         }
         noBtn.setOnClickListener {
-            Log.d("dddno", "clicked")
             alertDialog.dismiss()
             Toast.makeText(context, "취소되었습니다", Toast.LENGTH_SHORT).show()
         }

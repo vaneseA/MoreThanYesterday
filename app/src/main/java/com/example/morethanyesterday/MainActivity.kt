@@ -5,17 +5,19 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import com.example.morethanyesterday.record.RecordLVAdapter
-import com.example.morethanyesterday.record.RecordModel
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.example.morethanyesterday.databinding.ActivityMainBinding
+import com.example.morethanyesterday.utils.FBRef
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import java.io.FileInputStream
-import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,10 +36,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var key: String
 
     // 댓글(=본문+uid+시간) 목록
-    private val recordList = mutableListOf<RecordModel>()
+    private val AddExerciseList = mutableListOf<AddExerciseModel>()
 
     // 댓글의 키 목록
-    private val recordKeyList = mutableListOf<String>()
+    private val AddExerciseKeyList = mutableListOf<String>()
 
     // 리스트뷰 어댑터 선언
     private lateinit var recordLVAdapter: RecordLVAdapter
@@ -83,22 +85,24 @@ class MainActivity : AppCompatActivity() {
 
         }
         // 리스트뷰 어댑터 연결(운동목록)
-        recordLVAdapter = RecordLVAdapter(recordList)
-
+        recordLVAdapter = RecordLVAdapter(AddExerciseList)
         // 리스트뷰 어댑터 연결
         val lv : ListView = binding.mainLV
         lv.adapter = recordLVAdapter
 
+        //추가된 운동 출력
+        getExerciseListData()
+
         // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
-        lv.setOnItemClickListener { parent, view, position, id ->
+        binding.mainLV.setOnItemClickListener { parent, view, position, id ->
 
             // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(context, BoardReadActivity::class.java)
+            val intent = Intent(this, ExerciseSetActivity::class.java)
 
-            // 글읽기 액티비티로 게시글의 키 값 전달
-            intent.putExtra("key", recordList[position])
+            // 운동세트액티비티의 키 값 전달
+            intent.putExtra("key", AddExerciseKeyList[position])
 
-            // 글읽기 액티비티 시작
+            // 운동세트액티비티 시작
             startActivity(intent)
 
         }
@@ -195,4 +199,59 @@ class MainActivity : AppCompatActivity() {
 //            e.printStackTrace()
 //        }
 //    }
+// 게시글 하나의 정보를 가져옴
+// 모든 게시글 정보를 가져옴
+private fun getExerciseListData() {
+
+    // 데이터베이스에서 컨텐츠의 세부정보를 검색
+    val postListener = object : ValueEventListener {
+
+        // 데이터 스냅샷
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+            // 게시글 목록 비움
+            // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
+            AddExerciseList.clear()
+
+            // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+            for(dataModel in dataSnapshot.children) {
+
+                // 아이템(=게시글)
+                val item = dataModel.getValue(AddExerciseModel::class.java)
+
+                // 게시글 목록에 아이템 넣음
+                AddExerciseList.add(item!!)
+
+                // 게시글 키 목록에 문자열 형식으로 변환한 키 넣음
+                AddExerciseKeyList.add(dataModel.key.toString())
+Log.d("keykey", dataModel.key.toString())
+            }
+            // getPostData()와 달리 반복문임 -> 아이템'들'
+
+            // 게시글 키 목록을 역순으로 출력
+            AddExerciseKeyList.reverse()
+
+            // 게시글 목록도 역순 출력
+            AddExerciseList.reverse()
+
+//            // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+//            RecordLVAdapter.notifyDataSetChanged()
+
+        }
+
+        // 오류 나면
+        override fun onCancelled(databaseError: DatabaseError) {
+
+            // 로그
+            Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
+
+        }
+
+    }
+
+    // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+    FBRef.userRef.child("temporary").addValueEventListener(postListener)
+
+}
 }

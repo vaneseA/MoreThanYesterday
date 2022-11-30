@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.R
 
-class RecordLVAdapter(val recordList: MutableList<RecordModel>) : BaseAdapter() {
+class RecordLVAdapter(val recordList: MutableList<AddExerciseModel>) : BaseAdapter() {
 
 
 
@@ -35,16 +35,16 @@ class RecordLVAdapter(val recordList: MutableList<RecordModel>) : BaseAdapter() 
 
         val exerciseType = view.findViewById<TextView>(R.id.TypeArea)
         val exerciseName = view.findViewById<TextView>(R.id.NameArea)
-        val exerciseSet = view.findViewById<TextView>(R.id.exerciseSetArea)
-        val exerciseKg = view.findViewById<TextView>(R.id.exerciseKgArea)
-        val exerciseBestKg = view.findViewById<TextView>(R.id.exerciseBestKgArea)
-        val exerciseCount = view.findViewById<TextView>(R.id.exerciseCountArea)
+//        val exerciseSet = view.findViewById<TextView>(R.id.exerciseSetArea)
+//        val exerciseKg = view.findViewById<TextView>(R.id.exerciseKgArea)
+//        val exerciseBestKg = view.findViewById<TextView>(R.id.exerciseBestKgArea)
+//        val exerciseCount = view.findViewById<TextView>(R.id.exerciseCountArea)
 
 
 
         // 운동이름,총 세트, 총 중량, 최고 중량, 총 횟수 넣음
-        exerciseType!!.text = recordList[position].type
-        exerciseName!!.text = recordList[position].name
+        exerciseType!!.text = recordList[position].exerciseType
+        exerciseName!!.text = recordList[position].exerciseName
 //        exerciseSet!!.text = recordList[position].set
 //        exerciseKg!!.text = recordList[position].kg
 //        exerciseBestKg!!.text = recordList[position].bestKg
