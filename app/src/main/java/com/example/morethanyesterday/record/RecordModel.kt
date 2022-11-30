@@ -2,6 +2,9 @@ package com.example.morethanyesterday.record
 
 data class RecordModel(
 
+    //배정받은 날짜
+    var selectedDate: String = "",
+
     //  운동이름
     var name: String = "",
 
@@ -21,6 +24,5 @@ data class RecordModel(
     var bestKg: String = "",
 
     // 총 횟수
-    var count: String = ""
-
+    var count: String = "",
 )

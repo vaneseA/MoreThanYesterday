@@ -43,8 +43,8 @@ class RecordLVAdapter(val recordList: MutableList<AddExerciseModel>) : BaseAdapt
 
 
         // 운동이름,총 세트, 총 중량, 최고 중량, 총 횟수 넣음
-        exerciseType!!.text = recordList[position].exerciseType
-        exerciseName!!.text = recordList[position].exerciseName
+        exerciseType!!.text = recordList[position].type
+        exerciseName!!.text = recordList[position].name
 //        exerciseSet!!.text = recordList[position].set
 //        exerciseKg!!.text = recordList[position].kg
 //        exerciseBestKg!!.text = recordList[position].bestKg

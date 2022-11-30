@@ -41,27 +41,27 @@ class AddExerciseActivity : AppCompatActivity() {
     // 작성한 글을 등록
     private fun setExercise() {
         // 운동의 데이터(운동종류, 운동이름)
-        val addExerciseType = binding.addExerciseType.text.toString()
-        val addExerciseName = binding.addExerciseName.text.toString()
+        val type = binding.addExerciseType.text.toString()
+        val name = binding.addExerciseName.text.toString()
 
 
         // 키 값 하위에 데이터 넣음
         FirebaseDatabase.getInstance().getReference("exercise")
             .child("all")
             .child(exerciseId)
-            .setValue(AddExerciseModel(addExerciseType, addExerciseName, exerciseId))
+            .setValue(AddExerciseModel(type, name, exerciseId))
 
         // 키 값 하위에 데이터 넣음
         FirebaseDatabase.getInstance().getReference("exercise")
-            .child(exerciseTypeRule(addExerciseType))
+            .child(exerciseTypeRule(type))
             .child(exerciseId)
-            .setValue(AddExerciseModel(addExerciseType, addExerciseName, exerciseId))
+            .setValue(AddExerciseModel(type, name, exerciseId))
 
 
         // 등록 확인 메시지 띄움
         Toast.makeText(this, "저장완료", Toast.LENGTH_SHORT).show()
 
-        Log.d("ssss", addExerciseType)
+        Log.d("ssss", type)
         // 글쓰기 액티비티 종료
         finish()
 

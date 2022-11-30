@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val intent = Intent(this, RecordWriteAcitivity::class.java)
+        val intentSecond = Intent(this, MainActivity::class.java)
 
         binding.title.text = "More than yesterday"
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             checkDay(year, month, dayOfMonth, userID)
             // RecordWriteAcitivity : 넘기고자 하는 Component
             intent.putExtra("Date", selectedDate)
-
+            intentSecond.putExtra("Date", selectedDate)
         }
         // 리스트뷰 어댑터 연결(운동목록)
         recordLVAdapter = RecordLVAdapter(AddExerciseList)
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         lv.adapter = recordLVAdapter
 
         //추가된 운동 출력
-        getExerciseListData()
+        getExerciseListData(selectedDate)
 
         // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
         binding.mainLV.setOnItemClickListener { parent, view, position, id ->
@@ -202,7 +203,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 // 게시글 하나의 정보를 가져옴
 // 모든 게시글 정보를 가져옴
-    private fun getExerciseListData() {
+    private fun getExerciseListData(selectedDate: String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -252,7 +253,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 파이어베이스 내 데이터의 변화(추가)를 알려줌
-        FBRef.userRef.child("temporary").addValueEventListener(postListener)
-
+        FBRef.userRef.child(selectedDate).addValueEventListener(postListener)
+Log.d("selectedDate_Main", selectedDate)
     }
 }

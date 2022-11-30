@@ -2,7 +2,7 @@ package com.example.morethanyesterday
 
 data class AddExerciseModel(
 
-    var exerciseType: String = "",
-    var exerciseName: String = "",
+    var type: String = "",
+    var name: String = "",
     var exerciseId: String = ""
 )

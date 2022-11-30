@@ -12,8 +12,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
+import com.example.morethanyesterday.MainActivity
+import com.example.morethanyesterday.PrivateRecordModel
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.utils.FBRef
 
@@ -42,21 +43,30 @@ class ExerciseAllRVAdapter(
     override fun onBindViewHolder(holder: ExerciseAllRVAdapter.Viewholder, position: Int) {
         val exercise = items[position]
 
-        val intent = Intent(context, AddExerciseActivity::class.java)
-        // 선택된 카드의 ID 정보를 intent 에 추가한다.
-        intent.putExtra("exerciseId", exercise.exerciseId)
+//        val intent = Intent(context, AddExerciseActivity::class.java)
 
-        exerciseId = intent.getStringExtra("exerciseId").toString()
+        val intent = Intent(context, MainActivity::class.java)
+        // 선택된 카드의 ID 정보를 intent 에 추가한다.
+//        intent.putExtra("exerciseId", exercise.exerciseId)
+        val selectedDate = intent.getStringExtra("Date").toString()
+        Log.d("selectedDate_RV", selectedDate.toString())
+
+//        exerciseId = intent.getStringExtra("exerciseId").toString()
         val exerciseType = holder.itemView.findViewById<TextView>(R.id.exerciseTypeArea)
         val exerciseName = holder.itemView.findViewById<TextView>(R.id.exerciseNameArea)
 
         // 카드에 운동부위 세팅
-        exerciseType.text = exercise.exerciseType
+        exerciseType.text = exercise.type
         // 카드에 이름 세팅
-        exerciseName.text = exercise.exerciseName
+        exerciseName.text = exercise.name
 
         holder.itemView.setOnClickListener {
-            showDialog(exercise.exerciseName, exercise.exerciseType, holder.itemView.context)
+            showDialog(
+                exercise.name,
+                exercise.type,
+                holder.itemView.context,
+                selectedDate
+            )
         }
     }
 
@@ -67,7 +77,12 @@ class ExerciseAllRVAdapter(
     // 각 아이템에 데이터 넣어줌
     inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
-    private fun showDialog(exerciseName: String, exerciseType: String, context: Context) {
+    private fun showDialog(
+        exerciseName: String,
+        exerciseType: String,
+        context: Context,
+        selectedDate: String
+    ) {
 
 
         // custom_dialog를 뷰 객체로 반환
@@ -76,7 +91,10 @@ class ExerciseAllRVAdapter(
         // 대화상자 생성
         val builder = AlertDialog.Builder(context)
             .setView(dialogView)
-            .setTitle("${exerciseName}(${exerciseType})\n이 운동을 추가하시겠습니까?")
+            .setTitle(
+                "${selectedDate}에" +
+                        "\n${exerciseName}(${exerciseType})\n이 운동을 추가하시겠습니까?"
+            )
 
 //         대화상자 띄움
         val alertDialog = builder.show()
@@ -86,7 +104,8 @@ class ExerciseAllRVAdapter(
 
 
         yesBtn.setOnClickListener {
-            addExercise(exerciseType,exerciseName,exerciseId,)
+            addExercise(exerciseType, exerciseName, selectedDate)
+            Log.d("selectedDate_RV_Yes", selectedDate)
             alertDialog.dismiss()
 
         }
@@ -97,12 +116,16 @@ class ExerciseAllRVAdapter(
 
     }
 
-    private fun addExercise(exerciseType: String, exerciseName: String, exerciseId: String) {
+    private fun addExercise(
+        Type: String,
+        Name: String,
+        selectedDate: String
+    ) {
         // 키 값 하위에 데이터 넣음
         FBRef.userRef
-            .child("temporary")
-            .child(exerciseName)
-            .setValue(AddExerciseModel(exerciseType,exerciseName,exerciseId))
+            .child(selectedDate)
+            .child(Name)
+            .setValue(PrivateRecordModel(Type, Name, selectedDate))
 
     }
 }
