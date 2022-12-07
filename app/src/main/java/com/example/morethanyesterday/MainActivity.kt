@@ -13,9 +13,13 @@ import android.widget.TextView
 import com.example.morethanyesterday.record.RecordLVAdapter
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.example.morethanyesterday.databinding.ActivityMainBinding
+import com.example.morethanyesterday.record.fragments.AllFragment
+import com.example.morethanyesterday.record.fragments.ExerciseAllRVAdapter
+import com.example.morethanyesterday.record.seletedDateRecord.SelectedDateRecordActivity
 import com.example.morethanyesterday.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.io.FileInputStream
 
@@ -66,8 +70,7 @@ class MainActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        val intent = Intent(this, RecordWriteAcitivity::class.java)
-        val intentSecond = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SelectedDateRecordActivity::class.java)
 
         binding.title.text = "More than yesterday"
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
@@ -76,14 +79,12 @@ class MainActivity : AppCompatActivity() {
             binding.goToWriteBtn.visibility = View.VISIBLE
 //            binding.contextEditText.visibility = View.VISIBLE
 //            binding.diaryContent.visibility = View.INVISIBLE
-//            binding.updateBtn.visibility = View.INVISIBLE
-//            binding.deleteBtn.visibility = View.INVISIBLE
             binding.diaryTextView.text = selectedDate
 //            binding.contextEditText.setText("")
             checkDay(year, month, dayOfMonth, userID)
             // RecordWriteAcitivity : 넘기고자 하는 Component
-            intent.putExtra("Date", selectedDate)
-            intentSecond.putExtra("Date", selectedDate)
+             intent.putExtra("Date", selectedDate)
+            getExerciseListData(selectedDate)
         }
         // 리스트뷰 어댑터 연결(운동목록)
         recordLVAdapter = RecordLVAdapter(AddExerciseList)
@@ -92,24 +93,28 @@ class MainActivity : AppCompatActivity() {
         lv.adapter = recordLVAdapter
 
         //추가된 운동 출력
-        getExerciseListData(selectedDate)
 
         // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
         binding.mainLV.setOnItemClickListener { parent, view, position, id ->
 
             // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(this, ExerciseSetActivity::class.java)
+            val intent = Intent(this, SelectedDateRecordActivity::class.java)
 
             // 운동세트액티비티의 키 값 전달
             intent.putExtra("key", AddExerciseKeyList[position])
-
+            Log.d("key", AddExerciseKeyList[position])
             // 운동세트액티비티 시작
             startActivity(intent)
 
 
         }
         binding.goToWriteBtn.setOnClickListener {
+            Log.d("goToWriteBtn", selectedDate)
+            // 키 값 하위에 데이터 넣음
             startActivity(intent)
+//            val intentSecond = Intent(this, AllFragment::class.java)
+//            intentSecond.putExtra("Date", selectedDate)
+//            startActivity(intentSecond)
 //            saveDiary(fname)
 //            binding.contextEditText.visibility = View.INVISIBLE
 //            binding.goToWriteBtn.visibility = View.INVISIBLE
@@ -203,7 +208,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 // 게시글 하나의 정보를 가져옴
 // 모든 게시글 정보를 가져옴
-    private fun getExerciseListData(selectedDate: String) {
+    private fun getExerciseListData(selectedDate:String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -254,6 +259,6 @@ class MainActivity : AppCompatActivity() {
 
         // 파이어베이스 내 데이터의 변화(추가)를 알려줌
         FBRef.userRef.child(selectedDate).addValueEventListener(postListener)
-Log.d("selectedDate_Main", selectedDate)
+        Log.d("selectedDate_Main", selectedDate)
     }
 }

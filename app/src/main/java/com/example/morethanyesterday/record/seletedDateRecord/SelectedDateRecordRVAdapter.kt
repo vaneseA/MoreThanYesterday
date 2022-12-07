@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.record.fragments
+ package com.example.morethanyesterday.record.seletedDateRecord
 
 
 import android.app.AlertDialog

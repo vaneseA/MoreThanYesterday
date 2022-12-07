@@ -44,7 +44,6 @@ class AllFragment : Fragment() {
 
         rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
 
-
         // 명시적 인텐트 -> 다른 액티비티 호출
         val intent = Intent(context, RecordWriteAcitivity::class.java)
 
