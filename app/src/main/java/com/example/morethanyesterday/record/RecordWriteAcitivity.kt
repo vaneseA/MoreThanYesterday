@@ -1,8 +1,13 @@
 package com.example.morethanyesterday.record
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
+import com.example.morethanyesterday.record.fragments.AllFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RecordWriteAcitivity : AppCompatActivity() {
@@ -51,10 +56,28 @@ class RecordWriteAcitivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitleArray[position]
         }.attach()
-
+        var selectedDate = intent.getStringExtra("Date")
 
 //        MainActivity에서 RecordWriteAcitivity로 데이터값 받음
-        binding.selectedDate.text = intent.getStringExtra("Date")
+        binding.selectedDateAreaRW.text = selectedDate
+//        val intentSecond = Intent(this, AllFragment::class.java)
+//        intentSecond.putExtra("Date", selectedDate)
+//
+        var allFragment = AllFragment()
+        var bundle = Bundle()
+        bundle.putString("Date", selectedDate)
+        allFragment.arguments = bundle
+//        fra?.supportFragmentManager!!.beginTransaction()
+//            .replace(R.id.view_main, fragment2)
+//            .commit()
+//            val manager: FragmentManager = supportFragmentManager
+//            val transaction: FragmentTransaction = manager.beginTransaction()
+//
+//        transaction.replace(R.id.frameLayout, allFragment).commit()
+//        val transaction = supportFragmentManager.beginTransaction()
+//        transaction.add(R.id.selectedDateAreaRW, allFragment)
+//        transaction.commit()
+
 
         binding.backToTheMainBtn.setOnClickListener {
             finish()

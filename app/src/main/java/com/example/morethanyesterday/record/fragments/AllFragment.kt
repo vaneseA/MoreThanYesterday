@@ -1,5 +1,6 @@
 package com.example.morethanyesterday.record.fragments
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +9,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
+import com.example.morethanyesterday.PrivateRecordModel
+import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.FragmentAllBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
+import com.example.morethanyesterday.utils.FBRef
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,8 +37,21 @@ class AllFragment : Fragment() {
 
     val items: MutableList<AddExerciseModel> = mutableListOf()
 
-    // 운동ID
-    private lateinit var exerciseId: String
+    // 선택날짜
+    private lateinit var selectedDate: String
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+        vBinding = FragmentAllBinding.inflate(layoutInflater)
+// setFragmentResultListener("")
+        val selectedDate = arguments?.getString("Date").toString()
+//        binding.selecteddd.text = selectedDate
+
+        Log.d("arguments", selectedDate)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,24 +63,25 @@ class AllFragment : Fragment() {
 
         rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
 
-        // 명시적 인텐트 -> 다른 액티비티 호출
-        val intent = Intent(context, RecordWriteAcitivity::class.java)
-
-//        exerciseAllRVAdapter = ExerciseAllRVAdapter(exerciseList)
         val rv: RecyclerView = binding.allRecyclerView
         rv.adapter = rvAdapter
 
-        // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
-        exerciseId = intent.getStringExtra("exerciseId").toString()
-
+//        val selectedDate =
+//            arguments?.getString("Date")?.let {
+//                binding.selecteddd.text = it
+//            }
+//                    Toast.makeText(context, "77$selectedDate 입니다만....", Toast.LENGTH_LONG).show()
+//        // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
         // RecyclerView 에 LayoutManager 설정
         rv.layoutManager = LinearLayoutManager(context)
         // 리사이클러뷰의 아이템을 역순으로 정렬하게 함
         (rv.layoutManager as LinearLayoutManager).reverseLayout = true
         // 리사이클려뷰의 아이템을 쌓는 순서를 끝부터 쌓게 함
         (rv.layoutManager as LinearLayoutManager).stackFromEnd = true
+        Toast.makeText(context, "$selectedDate 입니다만....", Toast.LENGTH_LONG).show()
 
         getExerciseDataForMain()
+        setOnClickEvent(selectedDate.toString())
 
         // 블로그 더보기 클릭 -> 블로그 프래그먼트로 이동
         binding.exerciseAddBtn.setOnClickListener {
@@ -70,6 +90,20 @@ class AllFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun setOnClickEvent(selectedDate: String) {
+        var type = ""
+        var name = ""
+        // Adapter에 itemClickListener 등록
+        rvAdapter.setItemClickListener(object : ExerciseAllRVAdapter.OnItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                super.onClick(view, position) // 미리 정의해둔 onClick 호출
+//                showDialog(name,type,context,selectedDate)
+                showDialog(name, type, selectedDate.toString())
+                rvAdapter.notifyDataSetChanged() // 리스트 새로고침
+            }
+        })
     }
 
     private fun getExerciseDataForMain() {
@@ -162,6 +196,58 @@ class AllFragment : Fragment() {
             })
     }
 
+    private fun showDialog(
+        name: String,
+        Type: String,
+//        context: Context,
+        selectedDate: String
+    ) {
+
+        // custom_dialog를 뷰 객체로 반환
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.custom_dialog, null)
+
+        // 대화상자 생성
+        val builder = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setTitle(
+                "${selectedDate}에" +
+                        "\n${name}(${Type})\n이 운동을 추가하시겠습니까?"
+            )
+
+//         대화상자 띄움
+        val alertDialog = builder.show()
+
+        val yesBtn = alertDialog.findViewById<ConstraintLayout>(R.id.yesBtn)
+        val noBtn = alertDialog.findViewById<ConstraintLayout>(R.id.noBtn)
+
+
+        yesBtn.setOnClickListener {
+            addExercise(Type, name, selectedDate)
+
+            Log.d("selectedDate_RV_Yes", selectedDate)
+            alertDialog.dismiss()
+
+        }
+        noBtn.setOnClickListener {
+            alertDialog.dismiss()
+            Toast.makeText(context, "취소되었습니다", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    private fun addExercise(
+        Type: String,
+        Name: String,
+        selectedDate: String
+    ) {
+        // 키 값 하위에 데이터 넣음
+        FBRef.userRef
+            .child(selectedDate)
+            .child(Name)
+            .setValue(PrivateRecordModel(Type, Name, selectedDate))
+
+    }
+
     // 액티비티 파괴시
     override fun onDestroy() {
 
@@ -172,4 +258,3 @@ class AllFragment : Fragment() {
     }
 
 }
-

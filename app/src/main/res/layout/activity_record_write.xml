@@ -12,7 +12,7 @@
         android:background="@color/maincolor">
 
         <TextView
-            android:id="@+id/selectedDate"
+            android:id="@+id/selectedDateAreaRW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

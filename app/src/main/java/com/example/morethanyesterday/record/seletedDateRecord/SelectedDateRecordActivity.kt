@@ -3,11 +3,16 @@ package com.example.morethanyesterday.record.seletedDateRecord
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
 import com.example.morethanyesterday.databinding.ActivitySelectedDateRecordBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
+import com.example.morethanyesterday.record.fragments.AllFragment
 
 class SelectedDateRecordActivity : AppCompatActivity() {
     // (전역변수) 바인딩 객체 선언
@@ -24,17 +29,29 @@ class SelectedDateRecordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        var selectedDate =intent.getStringExtra("Date")
+        var selectedDate = intent.getStringExtra("Date")
 
         //        MainActivity에서 RecordWriteAcitivity로 데이터값 받음
-        binding.selectedDate.text = selectedDate
+        binding.selectedDateArea.text = selectedDate
         binding.backToTheMainBtn.setOnClickListener {
             finish()
         }
-        binding.exerciseRecordAddBtn.setOnClickListener{
+        binding.exerciseRecordAddBtn.setOnClickListener {
             val intent = Intent(this, RecordWriteAcitivity::class.java)
-        intent.putExtra("Date", selectedDate)
+            intent.putExtra("Date", selectedDate)
+            var allFragment = AllFragment()
+            var bundle = Bundle()
+            bundle.putString("Date", selectedDate)
+            Log.d("selectedDate1", selectedDate.toString())
+            allFragment.arguments = bundle
+            setFragment(allFragment)
             startActivity(intent)
         }
+        }
+
+    fun setFragment(fragment: Fragment) {
+        val transaction:FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.selectedDateArea, fragment)
+        transaction.commit()
     }
 }
