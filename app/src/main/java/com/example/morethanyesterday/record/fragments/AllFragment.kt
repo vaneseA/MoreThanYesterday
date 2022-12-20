@@ -153,12 +153,12 @@ class AllFragment : Fragment() {
                             rvAdapter?.notifyItemRemoved(existIndex)
                             // prevChildKey 가 없는 경우 맨마지막으로 이동 된 것
                             if (prevChildKey == null) {
-                                items.add(memo)
+                                items.add(exercise)
                                 rvAdapter?.notifyItemChanged(items.size - 1)
                             } else {
                                 // prevChildKey 다음 글로 추가
                                 val prevIndex = items.map { it.exerciseId }.indexOf(prevChildKey)
-                                items.add(prevIndex + 1, memo)
+                                items.add(prevIndex + 1, exercise)
                                 rvAdapter?.notifyItemChanged(prevIndex + 1)
                             }
                         }

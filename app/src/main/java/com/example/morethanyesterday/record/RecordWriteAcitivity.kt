@@ -3,6 +3,7 @@ package com.example.morethanyesterday.record
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
 import com.example.morethanyesterday.record.fragments.AllFragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -54,13 +55,27 @@ class RecordWriteAcitivity : AppCompatActivity() {
             tab.text = tabTitleArray[position]
         }.attach()
 
+//        supportFragmentManager.beginTransaction().replace(
+//            R.id.fragment_my_container,AllFragment().apply {
+//                arguments = Bundle().apply {
+//                    var selectedDate2 = "1"
+//                    putString("Date",selectedDate2)
+//                }
+//            }
+//        ).commit()
+
         var selectedDate = intent.getStringExtra("Date")
-        var selectedDate2 = "1"
         var allFragment = AllFragment()
         var bundle = Bundle()
-        bundle.putString("Date", selectedDate2)
+        bundle.putString("Date", selectedDate)
         allFragment.arguments = bundle
-        Log.d("selectedDate보냄", selectedDate2)
+
+        supportFragmentManager!!.beginTransaction()
+            .replace(R.id.fragment_one, allFragment)
+//            .add(R.id.fragment_one, allFragment)
+            .commit()
+
+        Log.d("selectedDate보냄", selectedDate.toString())
 
 
 
