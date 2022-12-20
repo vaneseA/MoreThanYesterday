@@ -14,6 +14,7 @@ import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.FragmentAllBinding
 import com.example.morethanyesterday.databinding.FragmentBackBinding
+import com.example.morethanyesterday.databinding.FragmentBicepBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class BackFragment : Fragment() {
         // (전역변수) 바인딩 객체 선언
-        private var vBinding: FragmentAllBinding? = null
+        private var vBinding: FragmentBackBinding? = null
 
         // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
         private val binding get() = vBinding!!
@@ -41,7 +42,7 @@ class BackFragment : Fragment() {
             savedInstanceState: Bundle?
         ): View? {
             // 뷰바인딩
-            vBinding = FragmentAllBinding.inflate(inflater, container, false)
+            vBinding = FragmentBackBinding.inflate(inflater, container, false)
 
             rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
 
@@ -50,7 +51,7 @@ class BackFragment : Fragment() {
             val intent = Intent(context, RecordWriteAcitivity::class.java)
 
 //        exerciseAllRVAdapter = ExerciseAllRVAdapter(exerciseList)
-            val rv: RecyclerView = binding.allRecyclerView
+            val rv: RecyclerView = binding.backRecyclerView
             rv.adapter = rvAdapter
 
             // 게시판 프래그먼트에서 게시글의 키 값을 받아옴

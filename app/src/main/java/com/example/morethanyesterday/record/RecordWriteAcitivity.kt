@@ -1,8 +1,10 @@
 package com.example.morethanyesterday.record
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
+import com.example.morethanyesterday.record.fragments.AllFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RecordWriteAcitivity : AppCompatActivity() {
@@ -52,9 +54,19 @@ class RecordWriteAcitivity : AppCompatActivity() {
             tab.text = tabTitleArray[position]
         }.attach()
 
+        var selectedDate = intent.getStringExtra("Date")
+        var selectedDate2 = "1"
+        var allFragment = AllFragment()
+        var bundle = Bundle()
+        bundle.putString("Date", selectedDate2)
+        allFragment.arguments = bundle
+        Log.d("selectedDate보냄", selectedDate2)
+
+
 
 //        MainActivity에서 RecordWriteAcitivity로 데이터값 받음
-        binding.selectedDate.text = intent.getStringExtra("Date")
+
+        binding.selectedDateAreaRW.text = selectedDate
 
         binding.backToTheMainBtn.setOnClickListener {
             finish()

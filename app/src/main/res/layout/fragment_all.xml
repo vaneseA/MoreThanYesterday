@@ -13,11 +13,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/allRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="500dp"></androidx.recyclerview.widget.RecyclerView>
 
     </FrameLayout>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/exerciseAddBtn"
         android:layout_width="wrap_content"

@@ -33,6 +33,8 @@ class AllFragment : Fragment() {
 
     // 운동ID
     private lateinit var exerciseId: String
+    // 선택날짜
+    private lateinit var selectedDate: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +55,14 @@ class AllFragment : Fragment() {
 
         // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
         exerciseId = intent.getStringExtra("exerciseId").toString()
+
+        selectedDate = arguments?.getString("Date").toString()
+        Log.d("selectedDate받음",selectedDate)
+
+
+
+
+
 
         // RecyclerView 에 LayoutManager 설정
         rv.layoutManager = LinearLayoutManager(context)
