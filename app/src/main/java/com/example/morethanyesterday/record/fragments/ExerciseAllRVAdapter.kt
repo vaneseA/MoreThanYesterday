@@ -17,17 +17,33 @@ import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.MainActivity
 import com.example.morethanyesterday.PrivateRecordModel
 import com.example.morethanyesterday.R
+import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.example.morethanyesterday.utils.FBRef
 
 
-private lateinit var exerciseId: String
+private lateinit var selectedDate: String
 
 class ExerciseAllRVAdapter(
     val context: Context, // 컨텍스트
     val items: MutableList<AddExerciseModel> = mutableListOf(),
 ) : RecyclerView.Adapter<ExerciseAllRVAdapter.Viewholder>() {
     // 리사이클러뷰의 어댑터 -> RecyclerView.Adapter를 상속해서 구현
+    private lateinit var itemClickListener : OnItemClickListener
 
+    // itemClickListener
+    interface OnItemClickListener {
+        fun onClick(view: View, position: Int) {
+            // recyclerview의 item을 클릭했을 때 수행할 동작
+//            val memoCheck: CheckBox = view.findViewById(R.id.memo_check)
+//            memoCheck.toggle() // checkBox 활성화/비활성화
+//            showDialog()
+        }
+    }
+
+    // itemClickListener setter
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
     // RecyclerView 에서 사용하는 View 홀더 클래스
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -62,26 +78,10 @@ class ExerciseAllRVAdapter(
         // 카드에 이름 세팅
         exerciseName.text = exercise.name
 
-//        holder.itemView.setOnClickListener {
-//            showDialog(
-//                exercise.name,
-//                exercise.type,
-//                holder.itemView.context,
-//                selectedDate
-//            )
-//        }
-        holder.itemView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val intent = Intent(v!!.context, MainActivity::class.java)
-                var selectedDate = intent.getStringExtra("Date")
-                FBRef.userRef
-                    .child(selectedDate.toString())
-                    .child(exerciseName.text.toString())
-                    .setValue(PrivateRecordModel(exerciseType.text.toString(), exerciseName.text.toString(), selectedDate.toString()))
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
 
-                v.context.startActivity(intent)
-            }
-        })
 
 
     }
