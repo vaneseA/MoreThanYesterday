@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.record.fragments
+package com.example.morethanyesterday.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.R
-import com.example.morethanyesterday.databinding.FragmentChestBinding
 import com.example.morethanyesterday.databinding.FragmentShoulderBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener

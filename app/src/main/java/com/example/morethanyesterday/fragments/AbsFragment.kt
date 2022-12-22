@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.record.fragments
+package com.example.morethanyesterday.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,19 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.R
-import com.example.morethanyesterday.databinding.FragmentBicepBinding
-import com.example.morethanyesterday.databinding.FragmentCardioBinding
+import com.example.morethanyesterday.databinding.FragmentAbsBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
-class CardioFragment : Fragment() {
-
+class AbsFragment : Fragment() {
     // (전역변수) 바인딩 객체 선언
-    private var vBinding: FragmentCardioBinding? = null
+    private var vBinding: FragmentAbsBinding? = null
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
@@ -41,7 +38,7 @@ class CardioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // 뷰바인딩
-        vBinding = FragmentCardioBinding.inflate(inflater, container, false)
+        vBinding = FragmentAbsBinding.inflate(inflater, container, false)
 
         rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
 
@@ -50,7 +47,7 @@ class CardioFragment : Fragment() {
         val intent = Intent(context, RecordWriteAcitivity::class.java)
 
 //        exerciseAllRVAdapter = ExerciseAllRVAdapter(exerciseList)
-        val rv: RecyclerView = binding.cardioRecyclerView
+        val rv: RecyclerView = binding.absRecyclerView
         rv.adapter = rvAdapter
 
         // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
@@ -75,7 +72,7 @@ class CardioFragment : Fragment() {
     }
 
     private fun getExerciseDataForMain() {
-        FirebaseDatabase.getInstance().getReference("/exercise").child("/cardio")
+        FirebaseDatabase.getInstance().getReference("/exercise").child("/abs")
             .addChildEventListener(object : ChildEventListener {
                 // 글이 추가된 경우
                 override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {

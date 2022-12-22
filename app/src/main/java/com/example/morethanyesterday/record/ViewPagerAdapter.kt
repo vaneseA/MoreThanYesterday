@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.morethanyesterday.record.fragments.*
+import com.example.morethanyesterday.fragments.*
 
 private const val NUM_TABS = 11
 
@@ -17,20 +17,21 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     }
 
     override fun createFragment(position: Int): Fragment {
+        var getFragment:Fragment? = null
         when (position) {
-            0 -> return AllFragment()
-            1 -> return BackFragment()
-            2 -> return ChestFragment()
-            3 -> return BicepFragment()
-            4 -> return TricepsFragment()
-            5 -> return TrapeziusFragment()
-            6 -> return ShoulderFragment()
-            7 -> return LowerBodyFragment()
-            8 -> return AbsFragment()
-            9 -> return CardioFragment()
-            10 -> return RecordListFragment()
+            0 -> getFragment = AllFragment()
+            1 -> getFragment =  BackFragment()
+            2 -> getFragment =  ChestFragment()
+            3 -> getFragment =  BicepFragment()
+            4 -> getFragment =  TricepsFragment()
+            5 -> getFragment =  TrapeziusFragment()
+            6 -> getFragment =  ShoulderFragment()
+            7 -> getFragment =  LowerBodyFragment()
+            8 -> getFragment =  AbsFragment()
+            9 -> getFragment =  CardioFragment()
+            10 -> getFragment =  RecordListFragment()
 
         }
-        return AllFragment()
+        return getFragment!!
     }
 }

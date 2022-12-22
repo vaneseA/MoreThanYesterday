@@ -1,4 +1,4 @@
- package com.example.morethanyesterday.record.seletedDateRecord
+ package com.example.morethanyesterday.seletedDateRecord
 
 
 import android.app.AlertDialog
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
-import android.content.Intent.getIntent
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -32,7 +31,7 @@ class ExerciseAllRVAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ExerciseAllRVAdapter.Viewholder {
+    ): Viewholder {
         // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
         val v =
             LayoutInflater.from(parent.context).inflate(R.layout.exercise_rv_item, parent, false)
@@ -41,7 +40,7 @@ class ExerciseAllRVAdapter(
         return Viewholder(v)
     }
 
-    override fun onBindViewHolder(holder: ExerciseAllRVAdapter.Viewholder, position: Int) {
+    override fun onBindViewHolder(holder: Viewholder, position: Int) {
         val exercise = items[position]
 
 //        val intent = Intent(context, AddExerciseActivity::class.java)

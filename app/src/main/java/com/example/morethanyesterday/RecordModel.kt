@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.record
+package com.example.morethanyesterday
 
 data class RecordModel(
 

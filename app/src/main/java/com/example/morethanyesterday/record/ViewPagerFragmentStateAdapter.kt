@@ -3,7 +3,7 @@ package com.example.morethanyesterday.record
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.morethanyesterday.record.fragments.*
+import com.example.morethanyesterday.fragments.*
 
 class ViewPagerFragmentStateAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

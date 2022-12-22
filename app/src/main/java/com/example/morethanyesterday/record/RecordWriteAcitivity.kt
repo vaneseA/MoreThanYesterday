@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
-import com.example.morethanyesterday.record.fragments.AllFragment
+import com.example.morethanyesterday.fragments.AllFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RecordWriteAcitivity : AppCompatActivity() {
@@ -49,20 +49,13 @@ class RecordWriteAcitivity : AppCompatActivity() {
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
 
+
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitleArray[position]
         }.attach()
 
-//        supportFragmentManager.beginTransaction().replace(
-//            R.id.fragment_my_container,AllFragment().apply {
-//                arguments = Bundle().apply {
-//                    var selectedDate2 = "1"
-//                    putString("Date",selectedDate2)
-//                }
-//            }
-//        ).commit()
 
         var selectedDate = intent.getStringExtra("Date")
         var allFragment = AllFragment()

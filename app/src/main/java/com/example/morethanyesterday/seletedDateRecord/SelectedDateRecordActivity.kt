@@ -1,18 +1,15 @@
-package com.example.morethanyesterday.record.seletedDateRecord
+package com.example.morethanyesterday.seletedDateRecord
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.R
-import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
-import com.example.morethanyesterday.databinding.ActivitySelectedDateRecordBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
-import com.example.morethanyesterday.record.fragments.AllFragment
+import com.example.morethanyesterday.databinding.ActivitySelectedDateRecordBinding
+import com.example.morethanyesterday.fragments.AllFragment
 
 class SelectedDateRecordActivity : AppCompatActivity() {
     // (전역변수) 바인딩 객체 선언

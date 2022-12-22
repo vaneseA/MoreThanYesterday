@@ -10,16 +10,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
-import com.example.morethanyesterday.record.RecordLVAdapter
-import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.example.morethanyesterday.databinding.ActivityMainBinding
-import com.example.morethanyesterday.record.fragments.AllFragment
-import com.example.morethanyesterday.record.fragments.ExerciseAllRVAdapter
-import com.example.morethanyesterday.record.seletedDateRecord.SelectedDateRecordActivity
+import com.example.morethanyesterday.seletedDateRecord.SelectedDateRecordActivity
 import com.example.morethanyesterday.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.io.FileInputStream
 
