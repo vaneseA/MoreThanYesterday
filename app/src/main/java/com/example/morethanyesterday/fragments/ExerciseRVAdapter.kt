@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import android.util.Log
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -21,46 +23,53 @@ import com.example.morethanyesterday.utils.FBRef
 
 private lateinit var selectedDate: String
 
-class ExerciseAllRVAdapter(
+class ExerciseRVAdapter(
     val context: Context, // 컨텍스트
     val items: MutableList<AddExerciseModel> = mutableListOf(),
-) : RecyclerView.Adapter<ExerciseAllRVAdapter.Viewholder>() {
-    // 리사이클러뷰의 어댑터 -> RecyclerView.Adapter를 상속해서 구현
-    private lateinit var itemClickListener : OnItemClickListener
+) : RecyclerView.Adapter<ExerciseRVAdapter.ViewHolder>() {
+
 
     // itemClickListener
-    interface OnItemClickListener {
+    interface ItemClick {
         fun onClick(view: View, position: Int) {
-            // recyclerview의 item을 클릭했을 때 수행할 동작
-//            val memoCheck: CheckBox = view.findViewById(R.id.memo_check)
-//            memoCheck.toggle() // checkBox 활성화/비활성화
-//            showDialog()
         }
     }
 
-    // itemClickListener setter
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.itemClickListener = onItemClickListener
+    var itemClick: ItemClick? = null
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        val exerciseType = view.findViewById<TextView>(R.id.exerciseTypeArea)
+        val exerciseName = view.findViewById<TextView>(R.id.exerciseNameArea)
+
     }
     // RecyclerView 에서 사용하는 View 홀더 클래스
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): Viewholder {
+    ): ViewHolder {
         // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
-        val v =
+        val view =
             LayoutInflater.from(parent.context).inflate(R.layout.exercise_rv_item, parent, false)
 
         // 아직 데이터는 들어가있지 않은 껍데기
-        return Viewholder(v)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        val exercise = items[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.itemView.findViewById<LinearLayout>(R.id.exerciseArea).setOnClickListener { v ->
+            itemClick?.onClick(v, position)
+        }
+        // 카드에 이름 세팅
+        holder.exerciseName.text = items[position].name
+        // 카드에 운동부위 세팅
+        holder.exerciseType.text = items[position].type
+//        val exercise = items[position]
 
 //        val intent = Intent(context, AddExerciseActivity::class.java)
 
-        val intent = Intent(context, MainActivity::class.java)
+//        val intent = Intent(context, MainActivity::class.java)
         // 선택된 카드의 ID 정보를 intent 에 추가한다.
 //        intent.putExtra("exerciseId", exercise.exerciseId)
 //        var intentSecond = getIntent()
@@ -68,17 +77,8 @@ class ExerciseAllRVAdapter(
 //        Log.d("selectedDate_RV", selectedDate)
 
 //        exerciseId = intent.getStringExtra("exerciseId").toString()
-        val exerciseType = holder.itemView.findViewById<TextView>(R.id.exerciseTypeArea)
-        val exerciseName = holder.itemView.findViewById<TextView>(R.id.exerciseNameArea)
 
-        // 카드에 운동부위 세팅
-        exerciseType.text = exercise.type
-        // 카드에 이름 세팅
-        exerciseName.text = exercise.name
 
-        holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position)
-        }
 
 
 
@@ -88,8 +88,8 @@ class ExerciseAllRVAdapter(
     override fun getItemCount(): Int = items.size
 
 
-    // 각 아이템에 데이터 넣어줌
-    inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
+//    // 각 아이템에 데이터 넣어줌
+//    inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
     private fun showDialog(
         name: String,

@@ -25,7 +25,7 @@ class TricepsFragment : Fragment() {
     private val binding get() = vBinding!!
 
     // 리사이클러뷰 어댑터 선언
-    lateinit var rvAdapter: ExerciseAllRVAdapter
+    lateinit var rvAdapter: ExerciseRVAdapter
 
     val items: MutableList<AddExerciseModel> = mutableListOf()
 
@@ -40,7 +40,7 @@ class TricepsFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentTricepsBinding.inflate(inflater, container, false)
 
-        rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
+        rvAdapter = ExerciseRVAdapter(requireContext(), items)
 
 
         // 명시적 인텐트 -> 다른 액티비티 호출

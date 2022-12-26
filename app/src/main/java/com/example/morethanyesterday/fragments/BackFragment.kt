@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
+import com.example.morethanyesterday.databinding.FragmentAllBinding
 import com.example.morethanyesterday.databinding.FragmentBackBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
@@ -25,7 +26,7 @@ class BackFragment : Fragment() {
         private val binding get() = vBinding!!
 
         // 리사이클러뷰 어댑터 선언
-        lateinit var rvAdapter: ExerciseAllRVAdapter
+        lateinit var rvAdapter: ExerciseRVAdapter
 
         val items: MutableList<AddExerciseModel> = mutableListOf()
 
@@ -40,7 +41,7 @@ class BackFragment : Fragment() {
             // 뷰바인딩
             vBinding = FragmentBackBinding.inflate(inflater, container, false)
 
-            rvAdapter = ExerciseAllRVAdapter(requireContext(), items)
+            rvAdapter = ExerciseRVAdapter(requireContext(), items)
 
 
             // 명시적 인텐트 -> 다른 액티비티 호출

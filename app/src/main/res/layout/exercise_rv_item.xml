@@ -16,6 +16,7 @@
 
         <!-- 운동명,총 세트,총 kg,최고 kg,총 횟수 영역 -->
         <LinearLayout
+            android:id="@+id/exerciseArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
