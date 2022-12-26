@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.seletedDateRecord
+package com.example.morethanyesterday.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

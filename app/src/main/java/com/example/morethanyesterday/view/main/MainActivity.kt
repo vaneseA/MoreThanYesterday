@@ -1,4 +1,4 @@
-package com.example.morethanyesterday
+package com.example.morethanyesterday.view.main
 
 
 import android.annotation.SuppressLint
@@ -10,8 +10,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
+import com.example.morethanyesterday.AddExerciseModel
+import com.example.morethanyesterday.RecordLVAdapter
 import com.example.morethanyesterday.databinding.ActivityMainBinding
-import com.example.morethanyesterday.seletedDateRecord.SelectedDateRecordActivity
+import com.example.morethanyesterday.view.SelectedDateRecordActivity
 import com.example.morethanyesterday.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

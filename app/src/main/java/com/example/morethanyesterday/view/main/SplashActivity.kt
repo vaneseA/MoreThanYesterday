@@ -1,9 +1,10 @@
-package com.example.morethanyesterday
+package com.example.morethanyesterday.view.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.morethanyesterday.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
