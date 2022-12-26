@@ -36,19 +36,22 @@ class AllFragment : Fragment() {
     private lateinit var selectedDate: String
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // 뷰바인딩
         vBinding = FragmentAllBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         rvAdapter = ExerciseRVAdapter(requireContext(), items)
 
         // 명시적 인텐트 -> 다른 액티비티 호출
         val intent = Intent(context, RecordWriteAcitivity::class.java)
-
-//        exerciseAllRVAdapter = ExerciseAllRVAdapter(exerciseList)
         val rv: RecyclerView = binding.allRecyclerView
         rv.adapter = rvAdapter
 
@@ -78,7 +81,7 @@ class AllFragment : Fragment() {
             startActivity(Intent(context, AddExerciseActivity::class.java))
         }
 
-        return binding.root
+
     }
 
     private fun getExerciseDataForMain() {
