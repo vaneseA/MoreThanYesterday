@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.ui.activity.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.databinding.FragmentTricepsBinding
-import com.example.morethanyesterday.record.RecordWriteAcitivity
+import com.example.morethanyesterday.ui.activity.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

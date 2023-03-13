@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.record
+package com.example.morethanyesterday.ui.activity.record
 
 import android.os.Bundle
 import android.util.Log
@@ -11,19 +11,19 @@ import com.google.android.material.tabs.TabLayoutMediator
 class RecordWriteAcitivity : AppCompatActivity() {
 
 
-    private val tabTitleArray = arrayOf(
-        "전체",
-        "등",
-        "가슴",
-        "이두",
-        "삼두",
-        "승모근",
-        "어깨",
-        "하체",
-        "복근",
-        "유산소",
-        "저장기록"
-    )
+//    private val tabTitleArray = arrayOf(
+//        "전체",
+//        "등",
+//        "가슴",
+//        "이두",
+//        "삼두",
+//        "승모근",
+//        "어깨",
+//        "하체",
+//        "복근",
+//        "유산소",
+//        "저장기록"
+//    )
 
     // (전역변수) 바인딩 객체 선언
     private var vBinding: ActivityRecordWriteBinding? = null
@@ -32,7 +32,7 @@ class RecordWriteAcitivity : AppCompatActivity() {
     private val binding get() = vBinding!!
 
 
-    lateinit var mAdapter: ViewPagerFragmentStateAdapter
+//    lateinit var mAdapter: ViewPagerFragmentStateAdapter
 
     // 게시글 키
     private lateinit var key: String
@@ -46,15 +46,15 @@ class RecordWriteAcitivity : AppCompatActivity() {
         vBinding = ActivityRecordWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewPager = binding.viewPager
-        val tabLayout = binding.tabLayout
+//        val viewPager = binding.viewPager
+//        val tabLayout = binding.tabLayout
 
 
-        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+//        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabTitleArray[position]
-        }.attach()
+//        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+//            tab.text = tabTitleArray[position]
+//        }.attach()
 
 
         var selectedDate = intent.getStringExtra("Date")

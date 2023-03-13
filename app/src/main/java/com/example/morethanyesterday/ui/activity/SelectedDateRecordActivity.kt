@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.view
+package com.example.morethanyesterday.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.morethanyesterday.R
-import com.example.morethanyesterday.record.RecordWriteAcitivity
+import com.example.morethanyesterday.ui.activity.record.RecordWriteAcitivity
 import com.example.morethanyesterday.databinding.ActivitySelectedDateRecordBinding
 import com.example.morethanyesterday.ui.fragments.AllFragment
 

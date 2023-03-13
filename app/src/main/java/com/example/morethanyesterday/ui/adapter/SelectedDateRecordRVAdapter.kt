@@ -1,4 +1,4 @@
- package com.example.morethanyesterday.view
+ package com.example.morethanyesterday.ui.adapter
 
 
 import android.app.AlertDialog

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MoreThanYesterday"
         tools:targetApi="31">
         <activity
-            android:name=".view.SelectedDateRecordActivity"
+            android:name=".ui.activity.SelectedDateRecordActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.ExerciseSetActivity"
@@ -35,7 +35,7 @@
             android:name="com.example.morethanyesterday.ui.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".record.RecordWriteAcitivity"
+            android:name="com.example.morethanyesterday.ui.activity.record.RecordWriteAcitivity"
             android:exported="false" />
     </application>
 

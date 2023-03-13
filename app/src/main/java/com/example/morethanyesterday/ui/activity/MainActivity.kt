@@ -13,7 +13,6 @@ import android.widget.TextView
 import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.RecordLVAdapter
 import com.example.morethanyesterday.databinding.ActivityMainBinding
-import com.example.morethanyesterday.view.SelectedDateRecordActivity
 import com.example.morethanyesterday.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
