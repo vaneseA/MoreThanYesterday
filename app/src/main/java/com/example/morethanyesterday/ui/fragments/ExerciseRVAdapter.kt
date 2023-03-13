@@ -1,21 +1,18 @@
-package com.example.morethanyesterday.fragments
+package com.example.morethanyesterday.ui.fragments
 
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import android.util.Log
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.view.main.MainActivity
 import com.example.morethanyesterday.PrivateRecordModel
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.utils.FBRef

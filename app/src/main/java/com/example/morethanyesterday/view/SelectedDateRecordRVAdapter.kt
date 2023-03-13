@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.view.main.MainActivity
+import com.example.morethanyesterday.ui.activity.MainActivity
 import com.example.morethanyesterday.PrivateRecordModel
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.utils.FBRef

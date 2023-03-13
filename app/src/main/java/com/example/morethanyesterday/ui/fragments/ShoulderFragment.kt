@@ -1,26 +1,25 @@
-package com.example.morethanyesterday.fragments
+package com.example.morethanyesterday.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.morethanyesterday.AddExerciseActivity
+import com.example.morethanyesterday.ui.activity.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.databinding.FragmentAllBinding
+import com.example.morethanyesterday.databinding.FragmentShoulderBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
-class AllFragment : Fragment() {
+class ShoulderFragment : Fragment() {
     // (전역변수) 바인딩 객체 선언
-    private var vBinding: FragmentAllBinding? = null
+    private var vBinding: FragmentShoulderBinding? = null
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
@@ -32,39 +31,27 @@ class AllFragment : Fragment() {
 
     // 운동ID
     private lateinit var exerciseId: String
-    // 선택날짜
-    private lateinit var selectedDate: String
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // 뷰바인딩
-        vBinding = FragmentAllBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        vBinding = FragmentShoulderBinding.inflate(inflater, container, false)
 
         rvAdapter = ExerciseRVAdapter(requireContext(), items)
 
+
         // 명시적 인텐트 -> 다른 액티비티 호출
         val intent = Intent(context, RecordWriteAcitivity::class.java)
-        val rv: RecyclerView = binding.allRecyclerView
+
+//        exerciseAllRVAdapter = ExerciseAllRVAdapter(exerciseList)
+        val rv: RecyclerView = binding.shoulderRecyclerView
         rv.adapter = rvAdapter
 
         // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
         exerciseId = intent.getStringExtra("exerciseId").toString()
-
-        selectedDate = arguments?.getString("Date").toString()
-        Log.d("selectedDate받음",selectedDate)
-
-
-
-
-
 
         // RecyclerView 에 LayoutManager 설정
         rv.layoutManager = LinearLayoutManager(context)
@@ -81,11 +68,11 @@ class AllFragment : Fragment() {
             startActivity(Intent(context, AddExerciseActivity::class.java))
         }
 
-
+        return binding.root
     }
 
     private fun getExerciseDataForMain() {
-        FirebaseDatabase.getInstance().getReference("/exercise").child("/all")
+        FirebaseDatabase.getInstance().getReference("/exercise").child("/shoulder")
             .addChildEventListener(object : ChildEventListener {
                 // 글이 추가된 경우
                 override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
@@ -155,12 +142,12 @@ class AllFragment : Fragment() {
                             rvAdapter?.notifyItemRemoved(existIndex)
                             // prevChildKey 가 없는 경우 맨마지막으로 이동 된 것
                             if (prevChildKey == null) {
-                                items.add(exercise)
+                                items.add(memo)
                                 rvAdapter?.notifyItemChanged(items.size - 1)
                             } else {
                                 // prevChildKey 다음 글로 추가
                                 val prevIndex = items.map { it.exerciseId }.indexOf(prevChildKey)
-                                items.add(prevIndex + 1, exercise)
+                                items.add(prevIndex + 1, memo)
                                 rvAdapter?.notifyItemChanged(prevIndex + 1)
                             }
                         }
@@ -184,4 +171,3 @@ class AllFragment : Fragment() {
     }
 
 }
-

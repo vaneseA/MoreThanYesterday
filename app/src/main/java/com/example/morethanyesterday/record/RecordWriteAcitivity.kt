@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.databinding.ActivityRecordWriteBinding
-import com.example.morethanyesterday.fragments.AllFragment
+import com.example.morethanyesterday.ui.fragments.AllFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RecordWriteAcitivity : AppCompatActivity() {

@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.morethanyesterday.R
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.example.morethanyesterday.databinding.ActivitySelectedDateRecordBinding
-import com.example.morethanyesterday.fragments.AllFragment
+import com.example.morethanyesterday.ui.fragments.AllFragment
 
 class SelectedDateRecordActivity : AppCompatActivity() {
     // (전역변수) 바인딩 객체 선언

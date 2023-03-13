@@ -1,14 +1,13 @@
-package com.example.morethanyesterday
+package com.example.morethanyesterday.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.databinding.ActivityAddExerciseBinding
 import com.example.morethanyesterday.utils.FBRef
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class AddExerciseActivity : AppCompatActivity() {
 

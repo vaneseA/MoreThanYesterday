@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/allItem"
+        android:title="전체"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/backItem"
+        android:title="등"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/chestItem"
+        android:title="가슴"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/lowerbodyItem"
+        android:title="하체"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/bicepsItem"
+        android:title="이두"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/tricepsItem"
+        android:title="삼두"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/deltoidItem"
+        android:title="어깨"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/absItem"
+        android:title="복근"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/trapeziusItem"
+        android:title="승모근"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/cardioItem"
+        android:title="유산소"
+        android:enabled="true"
+        />
+
+</menu>

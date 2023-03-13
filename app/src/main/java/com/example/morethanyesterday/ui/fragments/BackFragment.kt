@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.fragments
+package com.example.morethanyesterday.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.morethanyesterday.AddExerciseActivity
+import com.example.morethanyesterday.ui.activity.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.databinding.FragmentAllBinding
 import com.example.morethanyesterday.databinding.FragmentBackBinding
 import com.example.morethanyesterday.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener

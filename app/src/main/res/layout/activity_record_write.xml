@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/fragment_one"
-        android:name="com.example.morethanyesterday.fragments.AllFragment"
+        android:name="com.example.morethanyesterday.ui.fragments.AllFragment"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
 </LinearLayout>

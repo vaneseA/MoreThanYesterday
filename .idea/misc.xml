@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/layout/fragment_triceps.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/record_lv_inside_lv_item.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.15" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2" />
       </map>
     </option>
   </component>

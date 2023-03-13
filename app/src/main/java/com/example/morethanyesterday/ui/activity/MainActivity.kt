@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.view.main
+package com.example.morethanyesterday.ui.activity
 
 
 import android.annotation.SuppressLint

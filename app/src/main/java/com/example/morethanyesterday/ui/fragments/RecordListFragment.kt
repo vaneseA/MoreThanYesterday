@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.fragments
+package com.example.morethanyesterday.ui.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.ExerciseSetActivity
+import com.example.morethanyesterday.ui.activity.ExerciseSetActivity
 import com.example.morethanyesterday.databinding.FragmentRecordListBinding
 import com.example.morethanyesterday.RecordLVAdapter
 import com.example.morethanyesterday.utils.FBRef

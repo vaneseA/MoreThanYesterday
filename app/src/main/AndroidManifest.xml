@@ -17,13 +17,13 @@
             android:name=".view.SelectedDateRecordActivity"
             android:exported="false" />
         <activity
-            android:name=".ExerciseSetActivity"
+            android:name=".ui.activity.ExerciseSetActivity"
             android:exported="false" />
         <activity
-            android:name=".AddExerciseActivity"
+            android:name=".ui.activity.AddExerciseActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.morethanyesterday.view.main.SplashActivity"
+            android:name="com.example.morethanyesterday.ui.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.morethanyesterday.view.main.MainActivity"
+            android:name="com.example.morethanyesterday.ui.activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".record.RecordWriteAcitivity"

@@ -1,4 +1,4 @@
-package com.example.morethanyesterday.view.main
+package com.example.morethanyesterday.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
