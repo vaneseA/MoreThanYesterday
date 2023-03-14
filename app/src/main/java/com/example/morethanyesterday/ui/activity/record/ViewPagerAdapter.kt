@@ -25,7 +25,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
             3 -> getFragment =  BicepFragment()
             4 -> getFragment =  TricepsFragment()
             5 -> getFragment =  TrapeziusFragment()
-            6 -> getFragment =  ShoulderFragment()
+            6 -> getFragment =  DeltoidFragment()
             7 -> getFragment =  LowerBodyFragment()
             8 -> getFragment =  AbsFragment()
             9 -> getFragment =  CardioFragment()

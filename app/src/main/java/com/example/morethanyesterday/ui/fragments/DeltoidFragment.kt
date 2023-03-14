@@ -17,7 +17,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
-class ShoulderFragment : Fragment() {
+class DeltoidFragment : Fragment() {
     // (전역변수) 바인딩 객체 선언
     private var vBinding: FragmentShoulderBinding? = null
 

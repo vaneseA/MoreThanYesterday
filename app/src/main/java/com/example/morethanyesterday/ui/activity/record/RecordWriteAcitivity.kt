@@ -11,19 +11,19 @@ import com.google.android.material.tabs.TabLayoutMediator
 class RecordWriteAcitivity : AppCompatActivity() {
 
 
-//    private val tabTitleArray = arrayOf(
-//        "전체",
-//        "등",
-//        "가슴",
-//        "이두",
-//        "삼두",
-//        "승모근",
-//        "어깨",
-//        "하체",
-//        "복근",
-//        "유산소",
-//        "저장기록"
-//    )
+    private val tabTitleArray = arrayOf(
+        "전체",
+        "등",
+        "가슴",
+        "이두",
+        "삼두",
+        "승모근",
+        "어깨",
+        "하체",
+        "복근",
+        "유산소",
+        "저장기록"
+    )
 
     // (전역변수) 바인딩 객체 선언
     private var vBinding: ActivityRecordWriteBinding? = null
@@ -46,15 +46,15 @@ class RecordWriteAcitivity : AppCompatActivity() {
         vBinding = ActivityRecordWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val viewPager = binding.viewPager
-//        val tabLayout = binding.tabLayout
+        val viewPager = binding.viewPager
+        val tabLayout = binding.tabLayout
 
 
-//        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
 
-//        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-//            tab.text = tabTitleArray[position]
-//        }.attach()
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = tabTitleArray[position]
+        }.attach()
 
 
         var selectedDate = intent.getStringExtra("Date")
@@ -65,7 +65,7 @@ class RecordWriteAcitivity : AppCompatActivity() {
 
         supportFragmentManager!!.beginTransaction()
             .replace(R.id.fragment_one, allFragment)
-//            .add(R.id.fragment_one, allFragment)
+            .add(R.id.fragment_one, allFragment)
             .commit()
 
         Log.d("selectedDate보냄", selectedDate.toString())
