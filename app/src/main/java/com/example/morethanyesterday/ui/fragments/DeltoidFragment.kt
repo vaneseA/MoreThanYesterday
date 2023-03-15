@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.morethanyesterday.ui.activity.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
-import com.example.morethanyesterday.databinding.FragmentShoulderBinding
+import com.example.morethanyesterday.databinding.FragmentDeltoidBinding
 import com.example.morethanyesterday.ui.activity.record.RecordWriteAcitivity
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class DeltoidFragment : Fragment() {
     // (전역변수) 바인딩 객체 선언
-    private var vBinding: FragmentShoulderBinding? = null
+    private var vBinding: FragmentDeltoidBinding? = null
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
@@ -38,7 +38,7 @@ class DeltoidFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // 뷰바인딩
-        vBinding = FragmentShoulderBinding.inflate(inflater, container, false)
+        vBinding = FragmentDeltoidBinding.inflate(inflater, container, false)
 
         rvAdapter = ExerciseRVAdapter(requireContext(), items)
 

@@ -19,7 +19,7 @@
         <entry key="app/src/main/res/layout/exercise_rv_item.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_abs.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_aerobic.xml" value="0.2171875" />
-        <entry key="app/src/main/res/layout/fragment_all.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_all.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_back.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_bicep.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_cardio.xml" value="0.22239583333333332" />
@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_shoulder.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_trapezius.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_triceps.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/item_exercise.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/record_lv_inside_lv_item.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/record_lv_item.xml" value="0.15" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2" />

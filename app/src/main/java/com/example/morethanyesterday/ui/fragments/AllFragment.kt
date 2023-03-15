@@ -3,7 +3,6 @@ package com.example.morethanyesterday.ui.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +12,19 @@ import com.example.morethanyesterday.ui.activity.AddExerciseActivity
 import com.example.morethanyesterday.AddExerciseModel
 import com.example.morethanyesterday.databinding.FragmentAllBinding
 import com.example.morethanyesterday.ui.activity.record.RecordWriteAcitivity
+import com.example.morethanyesterday.ui.fragments.basic.BasicFragment
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
-class AllFragment : Fragment() {
+class AllFragment : BasicFragment<FragmentAllBinding>() {
+
     // (전역변수) 바인딩 객체 선언
     private var vBinding: FragmentAllBinding? = null
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
-    private val binding get() = vBinding!!
+//    private val binding get() = vBinding!!
 
     // 리사이클러뷰 어댑터 선언
     lateinit var rvAdapter: ExerciseRVAdapter
@@ -175,12 +176,20 @@ class AllFragment : Fragment() {
     }
 
     // 액티비티 파괴시
-    override fun onDestroy() {
+//    override fun onDestroy() {
+//
+//        // 바인딩 클래스 인스턴스 참조를 정리 -> 메모리 효율이 좋아짐
+//        vBinding = null
+//        super.onDestroy()
+//
+//    }
 
-        // 바인딩 클래스 인스턴스 참조를 정리 -> 메모리 효율이 좋아짐
-        vBinding = null
-        super.onDestroy()
+    override fun layoutId(): Int {
+        TODO("Not yet implemented")
+    }
 
+    override fun onCreateView() {
+        TODO("Not yet implemented")
     }
 
 }

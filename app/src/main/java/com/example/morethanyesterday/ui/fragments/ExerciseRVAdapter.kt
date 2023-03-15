@@ -47,7 +47,7 @@ class ExerciseRVAdapter(
     ): ViewHolder {
         // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.exercise_rv_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_rv_exercise, parent, false)
 
         // 아직 데이터는 들어가있지 않은 껍데기
         return ViewHolder(view)
